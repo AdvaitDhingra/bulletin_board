@@ -6,10 +6,14 @@
     <title>Hausaufgaben</title>
     <link rel="stylesheet" href="home.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-firestore.js"></script>
+    <!-- Main script -->
     <script src="home.js"></script>
 </head>
 <body>
-
     <ul>
         <div id="Bio">
             <li id="Biologie" onclick="content('BiG1-Mkn')">BiG1-Mkn
@@ -74,32 +78,7 @@
                     <center><button id="schließen" onclick="schließen('ChG2-Tol')" style="width: 100px;height: 20px;">Schließen</button></center>
                 </div>
             </li>
-            
         </div>
     </ul>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyDqcl7gDUaSFuqGSObgU1O3R4HtAwvubnU",
-    authDomain: "homework-e9969.firebaseapp.com",
-    databaseURL: "https://homework-e9969.firebaseio.com",
-    projectId: "homework-e9969",
-    storageBucket: "homework-e9969.appspot.com",
-    messagingSenderId: "871520598838",
-    appId: "1:871520598838:web:79f75461caab638caa1197",
-    measurementId: "G-3KNZKXXYPZ"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
 </body>
 </html>

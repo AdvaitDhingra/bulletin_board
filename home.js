@@ -1,5 +1,33 @@
+/**
+ * Home.js main code
+ * @file
+ */
 
+
+// Initialize Firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyDqcl7gDUaSFuqGSObgU1O3R4HtAwvubnU",
+    authDomain: "homework-e9969.firebaseapp.com",
+    databaseURL: "https://homework-e9969.firebaseio.com",
+    projectId: "homework-e9969",
+    storageBucket: "homework-e9969.appspot.com",
+    messagingSenderId: "871520598838",
+    appId: "1:871520598838:web:79f75461caab638caa1197",
+    measurementId: "G-3KNZKXXYPZ"
+};
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+/**
+ * The list of all homework.
+ * @type {Array<string>}
+ */
 var homework = [];
+
+/**
+ * The firebase collection with all homework.
+ */
+var homeworkDB = firebase.firestore().collection("homework");
 
 function content(subject){
     var content = document.getElementById(subject);
@@ -18,7 +46,7 @@ function HW(subject){
     var final_input = input + ' Abgabe am: ' + date;
     text.innerHTML += final_input;
     homework.push(final_input);
-    uploadData()
+    uploadData(subject)
 }
 function löschen(subject){
     document.getElementById(subject + '_text').innerHTML = '';
@@ -34,9 +62,8 @@ function schließen(subject){
     }
 }
 function uploadData(subject) {
-    var homarray = homework;
-    firebase.database().ref('kurse/' + subject).set({
-      array: homarray
+    homeworkDB.doc(subject).set({
+      array: homework
     });
-    alert(homarray + ' was uploaded to the cloud');
-  }
+    alert(homework + ' was uploaded to the cloud');
+}
