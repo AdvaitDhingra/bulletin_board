@@ -1,0 +1,23 @@
+.login{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    width: 15%;
+    height: 15% ;
+}
+.login_{
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+::placeholder{
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+@media screen and (max-width: 700px){
+    .login{
+        width: 50%;
+        height: 20%;
+    }
+}

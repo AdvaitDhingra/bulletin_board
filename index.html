@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hausaufgaben</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <form class="login">
+        <input type="text" placeholder="Benutzername" class="login_" id="user">
+        <input type="text" placeholder="Kennwort" class="login_" id="password">
+        <button class="loginButton" onclick="login()">Login</button>
+    </form>
+    <script>
+        function login(){
+            var username = document.getElementById("user").value;
+            var password = document.getElementById("password").value;
+            if (password == 'hello'){
+                window.open('./home.html');
+            }
+            else{
+                alert("Benutzername oder Kennwort is falsch.");
+            }        }
+    </script>
+</body>
+</html>

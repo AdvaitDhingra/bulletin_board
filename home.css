@@ -1,0 +1,36 @@
+h1{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Roboto', sans-serif;
+}
+ul{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+ul li{
+    padding-bottom: 10px;
+    border: 1px solid black;
+    width: 70%;
+    position: relative;
+    left:240px;
+}
+ul li:hover{
+    color: blue;
+    cursor: pointer;
+}
+@media screen and (max-width: 700px){
+    ul{
+        width: 50%;
+        position: absolute;
+        top: 50%;
+        left: 20%;
+    }
+}
