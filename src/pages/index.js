@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import Alert from "@material-ui/lab/Alert";
 
 import "../css/index.css";
 
@@ -34,12 +35,16 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Login" />
       {loading ? (
         <LinearProgress />
       ) : (
         <form className="login" onSubmit={submit}>
-          {error && <p className="error_text">Error loging in: {error}</p>}
+          {error && (
+            <Alert variant="outlined" severity="error">
+              Error loging in: {error}
+            </Alert>
+          )}
           <input
             ref={userField}
             type="text"

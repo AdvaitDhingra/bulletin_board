@@ -20,7 +20,7 @@ module.exports = {
       options: {
         name: `bulletin board`,
         short_name: `bb`,
-        start_url: `/`,
+        start_url: `/home`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
