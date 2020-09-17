@@ -1,7 +1,7 @@
 import React from "react";
 
 import firebase from "gatsby-plugin-firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useAuthState } from "../utils/firebase-hooks-gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -14,7 +14,7 @@ const IndexPage = () => {
   const userField = React.useRef();
   const passwordField = React.useRef();
   const [error, setError] = React.useState(null);
-  const [user, loading] = useAuthState(firebase.auth());
+  const [user, loading] = useAuthState();
   // If user already logged in redirect
   React.useEffect(() => {
     if (user !== null) document.location.href = "/home";

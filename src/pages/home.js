@@ -1,7 +1,7 @@
 import React from "react";
 
-import firebase from "gatsby-plugin-firebase";
-import { useAuthState, useDocument } from "react-firebase-hooks/auth";
+//import firebase from "gatsby-plugin-firebase";
+import { useAuthState } from "../utils/firebase-hooks-gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -25,7 +25,7 @@ const kurse = {
 
 const HomePage = () => {
   // Check auth status and redirect to login
-  const [user, loading] = useAuthState(firebase.auth());
+  const [user, loading] = useAuthState();
   React.useEffect(() => {
     if (!loading && user === null) document.location.href = "/";
   }, [user, loading]);
