@@ -7,7 +7,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import Header from "./Header";
 import "../css/index.css";
 
@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
       <footer className="footer">
-        © {new Date().getFullYear()}, <a href="https://twitter.com/advaitdhingra" target="_blank" className="Advait">Advait Dhingra</a> & <a href="https://twitter.com/arthuro555" target="_blank" className="Arthur">Arthur Pacaud</a>
+        © {new Date().getFullYear()}, <Link to="https://twitter.com/advaitdhingra" className="Name">Advait Dhingra</Link> & <Link to="https://github.com/arthuro555" className="Name">Arthur Pacaud</Link>
       </footer>
     </>
   );

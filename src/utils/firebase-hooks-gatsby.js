@@ -86,6 +86,7 @@ var useAuthState = function () {
         listener();
       };
     },
+    // eslint-disable-next-line
     [auth]
   );
   return [value, loading, error];
