@@ -22,10 +22,10 @@ const facher = [
   "Deutsch",
   "English",
   "Erdkunde",
-  "Erdkunde Fr.",
+  "ErdkundeFr",
   "Französich",
   "Geschichte",
-  "Geschichte Fr.",
+  "GeschichteFr",
   "Kunst",
   "Latein",
   "Mathe",
@@ -34,7 +34,7 @@ const facher = [
   "Physik",
   "SoWi",
   "Spanisch",
-  "Spanisch-Anfänger",
+  "Spanisch_Anfänger",
 ];
 
 const kurse = {
