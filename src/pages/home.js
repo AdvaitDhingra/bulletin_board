@@ -13,10 +13,29 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 
-const facher = ["Biologie","Chemie", "Deutsch", "English", "Erdkunde", "Erdkunde Fr.", "Französich", "Geschichte", "Geschichte Fr.",  "Kunst", "Latein", "Mathe", "Pädagogik", "Philosophie", "Physik", "SoWi", "Spanisch", "Spanisch-Anfänger"];
+const facher = [
+  "Biologie",
+  "Chemie",
+  "Deutsch",
+  "English",
+  "Erdkunde",
+  "Erdkunde Fr.",
+  "Französich",
+  "Geschichte",
+  "Geschichte Fr.",
+  "Kunst",
+  "Latein",
+  "Mathe",
+  "Pädagogik",
+  "Philosophie",
+  "Physik",
+  "SoWi",
+  "Spanisch",
+  "Spanisch-Anfänger",
+];
 
 const kurse = {
   Biologie: ["G1", "G2", "G3", "G9"],
@@ -61,22 +80,24 @@ const HomePage = () => {
       .firestore()
       .collection("homework")
       .doc(docSlug)
-      .onSnapshot(s => setHomeworks(s.data()))
-    
+      .onSnapshot((s) => setHomeworks(s.data()));
+
     return () => unsub();
   }, [fach, kurs]);
 
   const getHomeworkAsCopmonents = () => {
     let components = [];
-    for(let i in homeworks) {
+    for (let i in homeworks) {
       let homework = homeworks[i];
-      components.push(<>
-        <h1>{homework.title || "Invalid Title"}</h1>
-        <h5>{homework.content || "Invalid Content"}</h5>
-      </>)
+      components.push(
+        <>
+          <h1>{homework.title || "Invalid Title"}</h1>
+          <h5>{homework.content || "Invalid Content"}</h5>
+        </>
+      );
     }
     return components;
-  }
+  };
 
   return (
     <Layout>
@@ -150,14 +171,24 @@ const HomePage = () => {
             ))}
           </Menu>
           {getHomeworkAsCopmonents()}
-          <Fab color="primary" aria-label="add" onClick={() => setNewHomework(true)} style={{
-            position: "absolute",
-            bottom: "10px",
-            right: "10px",
-          }}>
+          <Fab
+            color="primary"
+            aria-label="add"
+            onClick={() => setNewHomework(true)}
+            style={{
+              position: "absolute",
+              bottom: "10px",
+              right: "10px",
+            }}
+          >
             <AddIcon />
           </Fab>
-          {newHomework && <NewHomeworkDialog onClose={() => setNewHomework(false)} doc={docSlug} />}
+          {newHomework && (
+            <NewHomeworkDialog
+              onClose={() => setNewHomework(false)}
+              doc={docSlug}
+            />
+          )}
         </>
       )}
     </Layout>
