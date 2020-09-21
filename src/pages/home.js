@@ -39,6 +39,7 @@ const facher = [
 
 const kurse = {
   Biologie: ["G1", "G2", "G3", "G9"],
+  Chemie: ["G1", "G2"],
   Mathe: ["G1", "G2", "V2", "V3", "V4", "V5"],
   Deutsch: ["G1", "G2", "G3", "G4", "G5", "V1"],
   English: ["G1", "G2", "G3", "V2", "V3", "V4"],
