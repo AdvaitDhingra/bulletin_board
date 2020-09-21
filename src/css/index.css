@@ -1,38 +1,31 @@
-.login{
-    margin-left: auto; 
-    margin-right: auto;
-    display: grid;
-    width: 15%;
-    height: 15%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.login {
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  width: 15%;
+  height: 15%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.login_text{
-    font-family: 'Roboto', sans-serif;
-    color: black;
-    height: 30px;
+.login_text {
+  font-family: "Roboto", sans-serif;
+  color: black;
+  height: 30px;
 }
-::placeholder{
-    font-family: 'Roboto', sans-serif;
-    color: black;
+::placeholder {
+  font-family: "Roboto", sans-serif;
+  color: black;
 }
-.loginButton{
-    padding: 10px 5px;
-    background-color: #00ff00;
-    border: none;
+.loginButton {
+  padding: 10px 5px;
+  background-color: #00ff00;
+  border: none;
 }
-.footer{
-    position: absolute;
-    bottom: 0;
-    margin-left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: 30px;
-}
-@media screen and (max-width: 700px){
-    .login{
-        width: 50%;
-        height: 20%;
-    }
+@media screen and (max-width: 700px) {
+  .login {
+    width: 50%;
+    height: 20%;
+  }
 }

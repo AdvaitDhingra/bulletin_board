@@ -85,7 +85,7 @@ const HomePage = () => {
       .onSnapshot((s) => setHomeworks(s.data()));
 
     return () => unsub();
-  }, [fach, kurs]);
+  }, [fach, kurs, docSlug]);
 
   const getHomeworkAsCopmonents = () => {
     let components = [];

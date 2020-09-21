@@ -1,6 +1,13 @@
-.Name{
-    color: black;
+.Name {
+  color: black;
 }
-.Name:hover{
-    color: blue;
+.Name:hover {
+  color: blue;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 30px;
 }
