@@ -6,6 +6,7 @@ import { useAuthState } from "../utils/firebase-hooks-gatsby";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import NewHomeworkDialog from "../components/NewHomeworkDialog";
+import Homework from "../components/Homework";
 
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -90,10 +91,11 @@ const HomePage = () => {
     for (let i in homeworks) {
       let homework = homeworks[i];
       components.push(
-        <>
-          <h1>{homework.title || "Invalid Title"}</h1>
-          <h5>{homework.content || "Invalid Content"}</h5>
-        </>
+        <Homework
+          key={i}
+          title={homework.title || "Invalid Title"}
+          content={homework.content || "Invalid Content"}
+        />
       );
     }
     return components;
