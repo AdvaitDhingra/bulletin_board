@@ -27,7 +27,14 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
       <footer className="footer">
-        © {new Date().getFullYear()}, <Link to="https://twitter.com/advaitdhingra" className="Name">Advait Dhingra</Link> & <Link to="https://github.com/arthuro555" className="Name">Arthur Pacaud</Link>
+        © {new Date().getFullYear()},{" "}
+        <Link to="https://twitter.com/advaitdhingra" className="Name">
+          Advait Dhingra
+        </Link>{" "}
+        &{" "}
+        <Link to="https://github.com/arthuro555" className="Name">
+          Arthur Pacaud
+        </Link>
       </footer>
     </>
   );
