@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
       <main>{children}</main>
       <footer className="footer">
         © {new Date().getFullYear()},{" "}
-        <Link to="https://twitter.com/advaitdhingra" className="Name">
+        <Link to="mailto:dhingra.co.in" className="Name">
           Advait Dhingra
         </Link>{" "}
         &{" "}
