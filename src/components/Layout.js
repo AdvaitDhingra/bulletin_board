@@ -8,8 +8,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
-
 import Header from "./Header";
+import "../css/index.css";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -26,8 +26,8 @@ const Layout = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Advait Dhingra & Arthur Pacaud
+      <footer className="footer">
+        © {new Date().getFullYear()}, <a href="https://twitter.com/advaitdhingra" target="_blank" className="Advait">Advait Dhingra</a> & <a href="https://twitter.com/arthuro555" target="_blank" className="Arthur">Arthur Pacaud</a>
       </footer>
     </>
   );
