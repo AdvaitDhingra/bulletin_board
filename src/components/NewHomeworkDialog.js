@@ -50,6 +50,7 @@ const NewHomeworkDialog = ({ onClose, doc }) => {
           type="textarea"
           fullWidth
           multiline
+          rows={4}
           onChange={(e) => setContent(e.target.value)}
         />
       </DialogContent>

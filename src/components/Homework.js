@@ -12,16 +12,17 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 
 const Homework = ({ title, content }) => {
+  const maxSize = 250;
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Card variant="outlined">
+      <Card style={{ marginBottom: "5px" }} variant="outlined">
         <CardContent>
           <h3>{title}</h3>
-          <p>{content.substring(0, 40)}</p>
+          <p>{content.substring(0, maxSize)}</p>
         </CardContent>
-        {content.length > 40 && (
+        {content.length > maxSize && (
           <CardActions>
             <Button onClick={() => setOpen(true)}>Read more...</Button>
           </CardActions>
