@@ -6,6 +6,7 @@
   "author": "Advait Dhingra and Arthur Pacaud",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "firebase": "^7.20.0",
     "gatsby": "^2.24.54",
@@ -22,7 +23,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-firebase-hooks": "^2.2.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "slugify": "^1.4.5"
   },
   "devDependencies": {
     "prettier": "2.1.1"
