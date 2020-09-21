@@ -29,12 +29,6 @@
     margin-left: 50%;
     transform: translate(-50%, -50%);
 }
-.Name{
-    color: black;
-}
-.Name:hover{
-    color: blue;
-}
 @media screen and (max-width: 700px){
     .login{
         width: 50%;
