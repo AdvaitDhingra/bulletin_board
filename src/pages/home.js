@@ -22,10 +22,10 @@ const facher = [
   "Deutsch",
   "English",
   "Erdkunde",
-  "ErdkundeFr",
+  "Erdkunde Fr.",
   "Französich",
   "Geschichte",
-  "GeschichteFr",
+  "Geschichte Fr.",
   "Kunst",
   "Latein",
   "Mathe",
@@ -34,7 +34,7 @@ const facher = [
   "Physik",
   "SoWi",
   "Spanisch",
-  "Spanisch_Anfänger",
+  "Spanisch-Anfänger",
 ];
 
 const kurse = {
@@ -45,8 +45,8 @@ const kurse = {
   Französich: ["G1", "G2", "G3", "V1", "V2", "V3"],
   Erdkunde: ["G1", "G2"],
   Geschichte: ["G1", "G2", "G3", "G4"],
-  ErdkundeFr: ["G1"],
-  GeschichteFr: ["G1"],
+  "Erdkunde Fr.": ["G1"],
+  "Geschichte Fr.": ["G1"],
   Kunst: ["G1", "G2", "G3"],
   Latein: ["G1"],
   Pädagogik: ["G1", "G2"],
@@ -54,7 +54,7 @@ const kurse = {
   Physik: ["G1", "G2"],
   SoWi: ["G1"],
   Spanisch: ["G1", "G2"],
-  Spanisch_Anfänger: ["G1"],
+  "Spanisch-Anfänger": ["G1"],
 };
 
 const HomePage = () => {
