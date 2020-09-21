@@ -179,9 +179,9 @@ const HomePage = () => {
             aria-label="add"
             onClick={() => setNewHomework(true)}
             style={{
-              position: "absolute",
-              bottom: "10px",
-              right: "10px",
+              position: "fixed",
+              bottom: "20px",
+              right: "20px",
             }}
           >
             <AddIcon />

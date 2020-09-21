@@ -4,7 +4,8 @@ import React from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
-import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
+import Exit from "@material-ui/icons/MeetingRoom";
 
 const Header = ({ siteTitle }) => {
   const [user, loading] = useAuthState();
@@ -35,12 +36,15 @@ const Header = ({ siteTitle }) => {
           </Link>
         </h1>
         {!loading && user !== null && (
-          <Button
-            style={{ float: "right", marginTop: "-35px" }}
+          <Fab
+            color="secondary"
+            variant="extended"
+            style={{ float: "right", marginTop: "-45px" }}
             onClick={() => firebase.auth().signOut()}
           >
+            <Exit style={{ marginRight: "5px" }} />
             Logout
-          </Button>
+          </Fab>
         )}
       </div>
     </header>

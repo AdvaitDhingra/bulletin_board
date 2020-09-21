@@ -48,13 +48,13 @@ const IndexPage = () => {
           <input
             ref={userField}
             type="text"
-            placeholder="Benutzername"
+            placeholder="E-Mail adresse"
             className="login_text"
             id="user"
           />
           <input
             ref={passwordField}
-            type="text"
+            type="password"
             placeholder="Kennwort"
             className="login_text"
             id="password"
