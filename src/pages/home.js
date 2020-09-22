@@ -2,7 +2,7 @@ import React from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
-import { navigate } from "gatsby";
+import { Link, navigate } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -188,18 +188,19 @@ const HomePage = () => {
           >
             <AddIcon />
           </Fab>
-          <Fab
-            size="small"
-            aria-label="settings"
-            onClick={() => navigate("/settings")}
-            style={{
-              position: "fixed",
-              bottom: "25px",
-              right: "90px",
-            }}
-          >
-            <SettingsIcon />
-          </Fab>
+          <Link to="/settings">
+            <Fab
+              size="small"
+              aria-label="settings"
+              style={{
+                position: "fixed",
+                bottom: "25px",
+                right: "90px",
+              }}
+            >
+              <SettingsIcon />
+            </Fab>
+          </Link>
           {newHomework && (
             <NewHomeworkDialog
               onClose={() => setNewHomework(false)}
