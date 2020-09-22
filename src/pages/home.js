@@ -2,6 +2,7 @@ import React from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
+import { navigate } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -16,6 +17,7 @@ import Menu from "@material-ui/core/Menu";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 const facher = [
   "Biologie",
@@ -63,7 +65,7 @@ const HomePage = () => {
   // Check auth status and redirect to login
   const [user, loading] = useAuthState();
   React.useEffect(() => {
-    if (!loading && user === null) document.location.href = "/";
+    if (!loading && user === null) navigate("/");
   }, [user, loading]);
 
   const [fach, setFach] = React.useState(0);
@@ -105,7 +107,7 @@ const HomePage = () => {
   return (
     <Layout>
       <SEO title="Boards" />
-      {loading ? (
+      {loading || user === null ? (
         <LinearProgress />
       ) : (
         <>
@@ -185,6 +187,18 @@ const HomePage = () => {
             }}
           >
             <AddIcon />
+          </Fab>
+          <Fab
+            size="small"
+            aria-label="settings"
+            onClick={() => navigate("/settings")}
+            style={{
+              position: "fixed",
+              bottom: "25px",
+              right: "90px",
+            }}
+          >
+            <SettingsIcon />
           </Fab>
           {newHomework && (
             <NewHomeworkDialog

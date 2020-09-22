@@ -2,6 +2,7 @@ import React from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
+import { navigate } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -17,7 +18,7 @@ const IndexPage = () => {
   const [user, loading] = useAuthState();
   // If user already logged in redirect
   React.useEffect(() => {
-    if (user !== null) document.location.href = "/home";
+    if (user !== null) navigate("/home");
   }, [user]);
 
   function submit(e) {
