@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import firebase from "gatsby-plugin-firebase";
+
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,8 +12,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
-const Homework = ({ title, content }) => {
+const Homework = ({ title, content, docSlug, id }) => {
   const maxSize = 250;
   const [open, setOpen] = useState(false);
 
@@ -19,6 +23,27 @@ const Homework = ({ title, content }) => {
     <>
       <Card style={{ marginBottom: "5px" }} variant="outlined">
         <CardContent>
+          <IconButton
+            onClick={() => {
+              firebase
+                .firestore()
+                .collection("homework")
+                .doc(docSlug)
+                .get()
+                .then((e) => {
+                  const data = e.data();
+                  delete data[id];
+                  firebase
+                    .firestore()
+                    .collection("homework")
+                    .doc(docSlug)
+                    .set(data);
+                });
+            }}
+            style={{ float: "right" }}
+          >
+            <DeleteIcon />
+          </IconButton>
           <h3>{title}</h3>
           <p>{content.substring(0, maxSize)}</p>
         </CardContent>

@@ -96,8 +96,10 @@ const HomePage = () => {
       components.push(
         <Homework
           key={i}
+          id={i}
           title={homework.title || "Invalid Title"}
           content={homework.content || "Invalid Content"}
+          docSlug={docSlug}
         />
       );
     }
