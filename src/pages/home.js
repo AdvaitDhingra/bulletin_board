@@ -18,6 +18,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsIcon from "@material-ui/icons/Settings";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const facher = [
   "Biologie",
@@ -122,6 +123,7 @@ const HomePage = () => {
               onClick={(e) => setAnchorElFach(e.currentTarget)}
             >
               <ListItemText primary="Fach:" secondary={facher[fach]} />
+              <ExpandMoreIcon/>
             </ListItem>
             <ListItem
               button
@@ -134,6 +136,7 @@ const HomePage = () => {
                 primary="Kurs:"
                 secondary={kurse[facher[fach]][kurs]}
               />
+              <ExpandMoreIcon/>
             </ListItem>
           </List>
           <Menu
