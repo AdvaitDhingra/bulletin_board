@@ -32,7 +32,7 @@ const NewHomeworkDialog = ({ onClose, doc }) => {
   }
 
   return (
-    <Dialog open={true} onClose={onClose}>
+    <Dialog open onClose={onClose}>
       <DialogTitle>New Homework</DialogTitle>
       <DialogContent>
         <TextField
@@ -56,7 +56,11 @@ const NewHomeworkDialog = ({ onClose, doc }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={submit} color="primary">
+        <Button
+          onClick={submit}
+          disabled={title.length === 0 || content.length === 0}
+          color="primary"
+        >
           Create!
         </Button>
       </DialogActions>
