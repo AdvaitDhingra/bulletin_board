@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
-import { navigate } from "gatsby";
+import { navigate, Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -13,6 +13,8 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
+import ArrowBackIcon from '@material-ui/icons/ChevronLeft';
 
 const SettingsPage = () => {
   // Check auth status and redirect to login
@@ -104,6 +106,19 @@ const SettingsPage = () => {
               </Button>
             </AccordionDetails>
           </Accordion>
+          <Link to="/">
+            <Fab
+            color="secondary"
+            aria-label="return-back"
+            style={{
+              position: "fixed",
+              bottom: "20px",
+              left: "20px",
+            }}
+          >
+              <ArrowBackIcon />
+            </Fab>
+          </Link>
         </>
       )}
     </Layout>
