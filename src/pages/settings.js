@@ -6,15 +6,13 @@ import { navigate, Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
+import ToggelableMenu from '../components/ToggelableMenu';
 
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
-import ArrowBackIcon from '@material-ui/icons/ChevronLeft';
+import ArrowBackIcon from "@material-ui/icons/ChevronLeft";
 
 const SettingsPage = () => {
   // Check auth status and redirect to login
@@ -34,14 +32,12 @@ const SettingsPage = () => {
 
   return (
     <Layout>
-      <SEO title="Boards" />
+      <SEO title="Settings" description="Set you user settings here!" />
       {loading ? (
         <LinearProgress />
       ) : (
         <>
-          <Accordion>
-            <AccordionSummary>Profile Settings</AccordionSummary>
-            <AccordionDetails>
+          <ToggelableMenu title="Profile Settings">
               <TextField inputRef={email} label="Email" type="email" />
               <Button
                 variant="contained"
@@ -53,69 +49,65 @@ const SettingsPage = () => {
               >
                 Update Profile
               </Button>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary>Password Settings</AccordionSummary>
-            <AccordionDetails>
-              <TextField
-                outlined
-                label="Old Password"
-                onChange={(e) => setOldPassword(e.target.value)}
-                type="password"
-                autoComplete="current-password"
-              />
-              <TextField
-                outlined
-                label="New Password"
-                onChange={(e) => setNewPassword(e.target.value)}
-                type="password"
-              />
-              <TextField
-                outlined
-                label="New Password Again"
-                onChange={(e) => setNewPassword2(e.target.value)}
-                type="password"
-                error={newPassword !== newPassword2}
-                helperText={
-                  newPassword !== newPassword2
-                    ? "Password do not match with new password"
-                    : null
-                }
-              />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  if (newPassword !== newPassword2) return;
-                  user
-                    .reauthenticateWithCredential(
-                      firebase.auth.EmailAuthProvider.credential(
-                        user.email,
-                        oldPassword
-                      )
-                    )
-                    .then((e) =>
-                      e.user
-                        .updatePassword(newPassword)
-                        .then(() => console.log("success"))
-                    );
-                }}
-              >
-                Change Password
-              </Button>
-            </AccordionDetails>
-          </Accordion>
-          <Link to="/">
+          </ToggelableMenu>
+          <ToggelableMenu title="Password Settings">
+                  <TextField
+                    outlined
+                    label="Old Password"
+                    onChange={(e) => setOldPassword(e.target.value)}
+                    type="password"
+                    autoComplete="current-password"
+                  />
+                  <TextField
+                    outlined
+                    label="New Password"
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    type="password"
+                  />
+                  <TextField
+                    outlined
+                    label="New Password Again"
+                    onChange={(e) => setNewPassword2(e.target.value)}
+                    type="password"
+                    error={newPassword !== newPassword2}
+                    helperText={
+                      newPassword !== newPassword2
+                        ? "Password do not match with new password"
+                        : null
+                    }
+                  />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => {
+                      if (newPassword !== newPassword2) return;
+                      user
+                        .reauthenticateWithCredential(
+                          firebase.auth.EmailAuthProvider.credential(
+                            user.email,
+                            oldPassword
+                          )
+                        )
+                        .then((e) =>
+                          e.user
+                            .updatePassword(newPassword)
+                            .then(() => console.log("success"))
+                        );
+                    }}
+                  >
+                    Change Password
+                  </Button>
+          </ToggelableMenu>
+          <Link to="/home">
             <Fab
-            color="secondary"
-            aria-label="return-back"
-            style={{
-              position: "fixed",
-              bottom: "20px",
-              left: "20px",
-            }}
-          >
+              color="secondary"
+              aria-label="return-back"
+              style={{
+                position: "fixed",
+                bottom: "20px",
+                left: "20px",
+              }}
+            >
               <ArrowBackIcon />
             </Fab>
           </Link>
