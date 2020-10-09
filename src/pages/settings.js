@@ -6,7 +6,7 @@ import { navigate, Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
-import ToggelableMenu from '../components/ToggelableMenu';
+import ToggelableMenu from "../components/ToggelableMenu";
 
 import LinearProgress from "@material-ui/core/LinearProgress";
 import TextField from "@material-ui/core/TextField";
@@ -38,65 +38,65 @@ const SettingsPage = () => {
       ) : (
         <>
           <ToggelableMenu title="Profile Settings">
-              <TextField inputRef={email} label="Email" type="email" />
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                  if (newPassword !== newPassword2) return;
-                  user.updateEmail(email.current.value);
-                }}
-              >
-                Update Profile
-              </Button>
+            <TextField inputRef={email} label="Email" type="email" />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                if (newPassword !== newPassword2) return;
+                user.updateEmail(email.current.value);
+              }}
+            >
+              Update Profile
+            </Button>
           </ToggelableMenu>
           <ToggelableMenu title="Password Settings">
-                  <TextField
-                    outlined
-                    label="Old Password"
-                    onChange={(e) => setOldPassword(e.target.value)}
-                    type="password"
-                    autoComplete="current-password"
-                  />
-                  <TextField
-                    outlined
-                    label="New Password"
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    type="password"
-                  />
-                  <TextField
-                    outlined
-                    label="New Password Again"
-                    onChange={(e) => setNewPassword2(e.target.value)}
-                    type="password"
-                    error={newPassword !== newPassword2}
-                    helperText={
-                      newPassword !== newPassword2
-                        ? "Password do not match with new password"
-                        : null
-                    }
-                  />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      if (newPassword !== newPassword2) return;
-                      user
-                        .reauthenticateWithCredential(
-                          firebase.auth.EmailAuthProvider.credential(
-                            user.email,
-                            oldPassword
-                          )
-                        )
-                        .then((e) =>
-                          e.user
-                            .updatePassword(newPassword)
-                            .then(() => console.log("success"))
-                        );
-                    }}
-                  >
-                    Change Password
-                  </Button>
+            <TextField
+              outlined
+              label="Old Password"
+              onChange={(e) => setOldPassword(e.target.value)}
+              type="password"
+              autoComplete="current-password"
+            />
+            <TextField
+              outlined
+              label="New Password"
+              onChange={(e) => setNewPassword(e.target.value)}
+              type="password"
+            />
+            <TextField
+              outlined
+              label="New Password Again"
+              onChange={(e) => setNewPassword2(e.target.value)}
+              type="password"
+              error={newPassword !== newPassword2}
+              helperText={
+                newPassword !== newPassword2
+                  ? "Password do not match with new password"
+                  : null
+              }
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                if (newPassword !== newPassword2) return;
+                user
+                  .reauthenticateWithCredential(
+                    firebase.auth.EmailAuthProvider.credential(
+                      user.email,
+                      oldPassword
+                    )
+                  )
+                  .then((e) =>
+                    e.user
+                      .updatePassword(newPassword)
+                      .then(() => console.log("success"))
+                  );
+              }}
+            >
+              Change Password
+            </Button>
           </ToggelableMenu>
           <Link to="/home">
             <Fab
