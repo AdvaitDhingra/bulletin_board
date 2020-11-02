@@ -2,12 +2,14 @@ import React from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
-import { Link, navigate } from "gatsby";
+import { Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import NewHomeworkDialog from "../components/NewHomeworkDialog";
 import Homework from "../components/Homework";
+
+import Empty from "../images/empty.svg";
 
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -63,11 +65,7 @@ const kurse = {
 };
 
 const HomePage = () => {
-  // Check auth status and redirect to login
   const [user, loading] = useAuthState();
-  React.useEffect(() => {
-    if (!loading && user === null) navigate("/");
-  }, [user, loading]);
 
   const [fach, setFach] = React.useState(0);
   const [kurs, setKurs] = React.useState(0);
@@ -90,25 +88,29 @@ const HomePage = () => {
     return () => unsub();
   }, [fach, kurs, docSlug]);
 
-  const getHomeworkAsCopmonents = () => {
-    let components = [];
-    for (let i in homeworks) {
-      let homework = homeworks[i];
-      components.push(
-        <Homework
-          key={i}
-          id={i}
-          title={homework.title || "Invalid Title"}
-          content={homework.content || "Invalid Content"}
-          docSlug={docSlug}
-        />
-      );
-    }
-    return components;
-  };
+  let homeworkDisplayList = [];
+  for (let i in homeworks) {
+    let homework = homeworks[i];
+    homeworkDisplayList.push(
+      <Homework
+        key={i}
+        id={i}
+        title={homework.title || "Invalid Title"}
+        content={homework.content || "Invalid Content"}
+        docSlug={docSlug}
+      />
+    );
+  }
+  if (homeworkDisplayList.length === 0)
+    homeworkDisplayList = (
+      <div style={{ margin: "0 35% 0 35%", textAlign: "center" }}>
+        <Empty />
+        <p>This is empty...</p>
+      </div>
+    );
 
   return (
-    <Layout>
+    <Layout authRequired>
       <SEO title="Boards" />
       {loading || user === null ? (
         <LinearProgress />
@@ -180,7 +182,7 @@ const HomePage = () => {
               </MenuItem>
             ))}
           </Menu>
-          {getHomeworkAsCopmonents()}
+          {homeworkDisplayList}
           <Fab
             color="primary"
             aria-label="add"

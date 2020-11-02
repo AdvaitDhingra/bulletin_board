@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -40,7 +40,10 @@ const Header = ({ siteTitle }) => {
             color="secondary"
             variant="extended"
             style={{ float: "right", marginTop: "-45px" }}
-            onClick={() => firebase.auth().signOut()}
+            onClick={() => {
+              firebase.auth().signOut();
+              navigate("/");
+            }}
           >
             <Exit style={{ marginRight: "5px" }} />
             Logout
