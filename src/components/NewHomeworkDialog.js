@@ -61,7 +61,7 @@ const NewHomeworkDialog = ({ onClose, doc }) => {
           disabled={title.length === 0 || content.length === 0}
           color="primary"
         >
-          Create!
+          Add
         </Button>
       </DialogActions>
     </Dialog>

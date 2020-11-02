@@ -54,7 +54,7 @@ const Homework = ({ title, content, docSlug, id }) => {
         )}
       </Card>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog open={open} onClose={() => setOpen(false)} className = "readmore">
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <p>{content}</p>
