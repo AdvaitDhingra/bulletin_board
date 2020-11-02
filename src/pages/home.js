@@ -9,6 +9,8 @@ import SEO from "../components/SEO";
 import NewHomeworkDialog from "../components/NewHomeworkDialog";
 import Homework from "../components/Homework";
 
+import Empty from "../images/empty.svg";
+
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -90,22 +92,26 @@ const HomePage = () => {
     return () => unsub();
   }, [fach, kurs, docSlug]);
 
-  const getHomeworkAsCopmonents = () => {
-    let components = [];
-    for (let i in homeworks) {
-      let homework = homeworks[i];
-      components.push(
-        <Homework
-          key={i}
-          id={i}
-          title={homework.title || "Invalid Title"}
-          content={homework.content || "Invalid Content"}
-          docSlug={docSlug}
-        />
-      );
-    }
-    return components;
-  };
+  let homeworkDisplayList = [];
+  for (let i in homeworks) {
+    let homework = homeworks[i];
+    homeworkDisplayList.push(
+      <Homework
+        key={i}
+        id={i}
+        title={homework.title || "Invalid Title"}
+        content={homework.content || "Invalid Content"}
+        docSlug={docSlug}
+      />
+    );
+  }
+  if (homeworkDisplayList.length === 0)
+    homeworkDisplayList = (
+      <div style={{ margin: "0 20% 0 20%", textAlign: "center"}}>
+        <Empty />
+        <p>This is empty...</p>
+      </div>
+    );
 
   return (
     <Layout>
@@ -180,7 +186,7 @@ const HomePage = () => {
               </MenuItem>
             ))}
           </Menu>
-          {getHomeworkAsCopmonents()}
+          {homeworkDisplayList}
           <Fab
             color="primary"
             aria-label="add"
