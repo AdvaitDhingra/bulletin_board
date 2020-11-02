@@ -26,8 +26,6 @@ const Layout = ({ children, authRequired }) => {
     }
   `);
 
-  console.log(authRequired, user, loading);
-
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />

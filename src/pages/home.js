@@ -77,31 +77,44 @@ const HomePage = () => {
   const [newHomework, setNewHomework] = React.useState(false);
 
   const [homeworks, setHomeworks] = React.useState(null);
+  const [homeworksExist, setHomeworksExist] = React.useState(false);
+  const [homeworksLoading, setHomeworksLoading] = React.useState(true);
 
   React.useEffect(() => {
     const unsub = firebase
       .firestore()
       .collection("homework")
       .doc(docSlug)
-      .onSnapshot((s) => setHomeworks(s.data()));
+      .onSnapshot((s) => {
+        const data = s.data();
+        console.log(data);
+        setHomeworks(data);
+        setHomeworksExist(s.exists && Object.keys(data).length !== 0);
+        setHomeworksLoading(false);
+      });
 
     return () => unsub();
   }, [fach, kurs, docSlug]);
 
-  let homeworkDisplayList = [];
-  for (let i in homeworks) {
-    let homework = homeworks[i];
-    homeworkDisplayList.push(
-      <Homework
-        key={i}
-        id={i}
-        title={homework.title || "Invalid Title"}
-        content={homework.content || "Invalid Content"}
-        docSlug={docSlug}
-      />
-    );
-  }
-  if (homeworkDisplayList.length === 0)
+  let homeworkDisplayList;
+
+  if (homeworksLoading) {
+    homeworkDisplayList = <></>;
+  } else if (homeworksExist) {
+    homeworkDisplayList = [];
+    for (let i in homeworks) {
+      let homework = homeworks[i];
+      homeworkDisplayList.push(
+        <Homework
+          key={i}
+          id={i}
+          title={homework.title || "Invalid Title"}
+          content={homework.content || "Invalid Content"}
+          docSlug={docSlug}
+        />
+      );
+    }
+  } else
     homeworkDisplayList = (
       <div style={{ margin: "0 35% 0 35%", textAlign: "center" }}>
         <Empty />
