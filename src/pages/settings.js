@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
-import { navigate, Link } from "gatsby";
+import { Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -24,14 +24,13 @@ const SettingsPage = () => {
   const [newPassword2, setNewPassword2] = useState("");
 
   React.useEffect(() => {
-    if (!loading && user === null) navigate("/");
     if (!loading && user) {
       if (email.current) email.current.value = user.email;
     }
   }, [user, loading, email]);
 
   return (
-    <Layout>
+    <Layout authRequired>
       <SEO title="Settings" description="Set you user settings here!" />
       {loading ? (
         <LinearProgress />

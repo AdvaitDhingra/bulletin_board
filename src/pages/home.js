@@ -2,7 +2,7 @@ import React from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
-import { Link, navigate } from "gatsby";
+import { Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -65,11 +65,7 @@ const kurse = {
 };
 
 const HomePage = () => {
-  // Check auth status and redirect to login
   const [user, loading] = useAuthState();
-  React.useEffect(() => {
-    if (!loading && user === null) navigate("/");
-  }, [user, loading]);
 
   const [fach, setFach] = React.useState(0);
   const [kurs, setKurs] = React.useState(0);
@@ -107,14 +103,14 @@ const HomePage = () => {
   }
   if (homeworkDisplayList.length === 0)
     homeworkDisplayList = (
-      <div style={{ margin: "0 35% 0 35%", textAlign: "center"}}>
+      <div style={{ margin: "0 35% 0 35%", textAlign: "center" }}>
         <Empty />
         <p>This is empty...</p>
       </div>
     );
 
   return (
-    <Layout>
+    <Layout authRequired>
       <SEO title="Boards" />
       {loading || user === null ? (
         <LinearProgress />
