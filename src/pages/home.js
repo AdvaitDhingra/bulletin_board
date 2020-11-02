@@ -107,7 +107,7 @@ const HomePage = () => {
   }
   if (homeworkDisplayList.length === 0)
     homeworkDisplayList = (
-      <div style={{ margin: "0 20% 0 20%", textAlign: "center"}}>
+      <div style={{ margin: "0 35% 0 35%", textAlign: "center"}}>
         <Empty />
         <p>This is empty...</p>
       </div>
