@@ -15,56 +15,50 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-//animations:
+import Slide from "@material-ui/core/Slide";
 
-import Slide from '@material-ui/core/Slide';
-
-
-
-
-const Homework = ({ title, content, docSlug, id }) => {
+const Homework = ({ title, content, docSlug, key, timeout }) => {
   const maxSize = 250;
   const [open, setOpen] = useState(false);
 
   return (
     <>
-    <Slide in = {true} timeout = {700} >
-      <Card style={{ marginBottom: "5px" }} variant="outlined">
-        <CardContent>
-          <IconButton
-            onClick={() => {
-              firebase
-                .firestore()
-                .collection("homework")
-                .doc(docSlug)
-                .get()
-                .then((e) => {
-                  const data = e.data();
-                  delete data[id];
-                  firebase
-                    .firestore()
-                    .collection("homework")
-                    .doc(docSlug)
-                    .set(data);
-                });
-            }}
-            style={{ float: "right" }}
-          >
-            <DeleteIcon />
-          </IconButton>
-          <h3>{title}</h3>
-          <p>{content.substring(0, maxSize)}</p>
-        </CardContent>
-        {content.length > maxSize && (
-          <CardActions>
-            <Button onClick={() => setOpen(true)}>Read more...</Button>
-          </CardActions>
-        )}
-      </Card>
+      <Slide in direction="right" timeout={timeout * 50}>
+        <Card style={{ marginBottom: "5px" }} variant="outlined">
+          <CardContent>
+            <IconButton
+              onClick={() => {
+                firebase
+                  .firestore()
+                  .collection("homework")
+                  .doc(docSlug)
+                  .get()
+                  .then((e) => {
+                    const data = e.data();
+                    delete data[key];
+                    firebase
+                      .firestore()
+                      .collection("homework")
+                      .doc(docSlug)
+                      .set(data);
+                  });
+              }}
+              style={{ float: "right" }}
+            >
+              <DeleteIcon />
+            </IconButton>
+            <h3>{title}</h3>
+            <p>{content.substring(0, maxSize)}</p>
+          </CardContent>
+          {content.length > maxSize && (
+            <CardActions>
+              <Button onClick={() => setOpen(true)}>Read more...</Button>
+            </CardActions>
+          )}
+        </Card>
       </Slide>
-      
-          
-      <Dialog open={open} onClose={() => setOpen(false)} className = "readmore">
+
+      <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <p>{content}</p>

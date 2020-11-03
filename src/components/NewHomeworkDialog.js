@@ -11,8 +11,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import slugify from "slugify";
 
-
-
 const NewHomeworkDialog = ({ onClose, doc }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");

@@ -88,7 +88,6 @@ const HomePage = () => {
       .doc(docSlug)
       .onSnapshot((s) => {
         const data = s.data();
-        console.log(data);
         setHomeworks(data);
         setHomeworksExist(s.exists && Object.keys(data).length !== 0);
         setHomeworksLoading(false);
@@ -109,12 +108,13 @@ const HomePage = () => {
     );
   } else if (homeworksExist) {
     homeworkDisplayList = [];
+    let timeout = 0;
     for (let i in homeworks) {
       let homework = homeworks[i];
       homeworkDisplayList.push(
         <Homework
           key={i}
-          id={i}
+          timeout={++timeout}
           title={homework.title || "Invalid Title"}
           content={homework.content || "Invalid Content"}
           docSlug={docSlug}
