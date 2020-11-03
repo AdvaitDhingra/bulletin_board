@@ -17,7 +17,15 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 import Slide from "@material-ui/core/Slide";
 
-const Homework = ({ title, content, startDate, dueDate, docSlug, id, timeout }) => {
+const Homework = ({
+  title,
+  content,
+  startDate,
+  dueDate,
+  docSlug,
+  id,
+  timeout,
+}) => {
   const maxSize = 250;
   const [open, setOpen] = useState(false);
 
@@ -49,7 +57,10 @@ const Homework = ({ title, content, startDate, dueDate, docSlug, id, timeout }) 
             </IconButton>
             <h3>{title}</h3>
             <p>{content.substring(0, maxSize)}</p>
-            <p>Von: {startDate.toDate().toDateString()}, Bis: {dueDate.toDate().toDateString()}</p>
+            <p>
+              Von: {startDate.toDate().toDateString()}, Bis:{" "}
+              {dueDate.toDate().toDateString()}
+            </p>
           </CardContent>
           {content.length > maxSize && (
             <CardActions>
@@ -62,7 +73,9 @@ const Homework = ({ title, content, startDate, dueDate, docSlug, id, timeout }) 
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
-          <p>{content} Von: {startDate} Bis: {dueDate}</p> 
+          <p>
+            {content} Von: {startDate} Bis: {dueDate}
+          </p>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>Close</Button>
