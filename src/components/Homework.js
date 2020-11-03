@@ -17,7 +17,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 import Slide from "@material-ui/core/Slide";
 
-const Homework = ({ title, content, startDate, dueDate, docSlug, key, timeout }) => {
+const Homework = ({ title, content, startDate, dueDate, docSlug, id, timeout }) => {
   const maxSize = 250;
   const [open, setOpen] = useState(false);
 
@@ -35,7 +35,7 @@ const Homework = ({ title, content, startDate, dueDate, docSlug, key, timeout })
                   .get()
                   .then((e) => {
                     const data = e.data();
-                    delete data[key];
+                    delete data[id];
                     firebase
                       .firestore()
                       .collection("homework")
@@ -49,7 +49,7 @@ const Homework = ({ title, content, startDate, dueDate, docSlug, key, timeout })
             </IconButton>
             <h3>{title}</h3>
             <p>{content.substring(0, maxSize)}</p>
-            <p>Von: {startDate}, Bis: {dueDate}</p>
+            <p>Von: {startDate.toDate().toDateString()}, Bis: {dueDate.toDate().toDateString()}</p>
           </CardContent>
           {content.length > maxSize && (
             <CardActions>

@@ -113,7 +113,8 @@ const HomePage = () => {
       let homework = homeworks[i];
       homeworkDisplayList.push(
         <Homework
-          key={i}
+          id={i}
+          key={i} // This has to be duplicated due to the way react works
           timeout={++timeout}
           title={homework.title || "Invalid Title"}
           content={homework.content || "Invalid Content"}

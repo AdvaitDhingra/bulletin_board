@@ -8,15 +8,18 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Grid from "@material-ui/core/Grid";
+
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 
 import slugify from "slugify";
-
 
 const NewHomeworkDialog = ({ onClose, doc }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [currentDate, setcurrentDate] = useState(new Date().toISOString().slice(0,10))
-  const [dueDate, setdueDate] = useState("");
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [dueDate, setDueDate] = useState(new Date());
 
   function submit() {
     const homework = {};
@@ -36,54 +39,45 @@ const NewHomeworkDialog = ({ onClose, doc }) => {
   }
 
   return (
-    <Dialog open onClose={onClose}>
-      <DialogTitle>New Homework</DialogTitle>
-      <DialogContent>
-        <TextField
-          // eslint-disable-next-line
-          autoFocus
-          margin="dense"
-          label="Title"
-          type="text"
-          fullWidth
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <TextField
-          margin="dense"
-          label="Content"
-          type="textarea"
-          fullWidth
-          multiline
-          rows={4}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <TextField
-          id="date"
-          label="Heute"
-          type="date"
-          defaultValue={currentDate}
-          onChange = {(e) => setcurrentDate(e.target.value)}
-        />
-        <TextField
-          id="date"
-          label="Abgabe"
-          type="date"
-          defaultValue = {currentDate}
-          onChange = {(e) => setdueDate(e.target.value)}
-        />
-          
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button
-          onClick={submit}
-          disabled={title.length === 0 || content.length === 0}
-          color="primary"
-        >
-          Add
-        </Button>
-      </DialogActions>
-    </Dialog>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Dialog open onClose={onClose}>
+        <DialogTitle>New Homework</DialogTitle>
+        <DialogContent>
+          <Grid container direction="row" justify="space-between">
+            <TextField
+              // eslint-disable-next-line
+              autoFocus
+              margin="dense"
+              label="Title"
+              type="text"
+              fullWidth
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <TextField
+              margin="dense"
+              label="Content"
+              type="textarea"
+              fullWidth
+              multiline
+              rows={4}
+              onChange={(e) => setContent(e.target.value)}
+            />
+            <DatePicker value={currentDate} onChange={setCurrentDate} />
+            <DatePicker value={dueDate} onChange={setDueDate} />
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button
+            onClick={submit}
+            disabled={title.length === 0 || content.length === 0}
+            color="primary"
+          >
+            Add
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </MuiPickersUtilsProvider>
   );
 };
 
