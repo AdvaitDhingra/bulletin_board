@@ -11,16 +11,20 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import slugify from "slugify";
 
+
 const NewHomeworkDialog = ({ onClose, doc }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [currentDate, setcurrentDate] = useState(new Date().toISOString().slice(0,10))
+  const [dueDate, setdueDate] = useState("");
 
   function submit() {
     const homework = {};
     homework[slugify(title)] = {
       title: title,
       content: content,
-      returnTime: Date.now() + 5000,
+      startDate: currentDate,
+      returnDate: dueDate,
     };
 
     firebase
@@ -53,6 +57,21 @@ const NewHomeworkDialog = ({ onClose, doc }) => {
           rows={4}
           onChange={(e) => setContent(e.target.value)}
         />
+        <TextField
+          id="date"
+          label="Heute"
+          type="date"
+          defaultValue={currentDate}
+          onChange = {(e) => setcurrentDate(e.target.value)}
+        />
+        <TextField
+          id="date"
+          label="Abgabe"
+          type="date"
+          defaultValue = {currentDate}
+          onChange = {(e) => setdueDate(e.target.value)}
+        />
+          
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>

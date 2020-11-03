@@ -117,6 +117,8 @@ const HomePage = () => {
           timeout={++timeout}
           title={homework.title || "Invalid Title"}
           content={homework.content || "Invalid Content"}
+          startDate = {homework.startDate}
+          dueDate = {homework.returnDate}
           docSlug={docSlug}
         />
       );
