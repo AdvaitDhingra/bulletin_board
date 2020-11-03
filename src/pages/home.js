@@ -7,6 +7,7 @@ import { Link } from "gatsby";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import NewHomeworkDialog from "../components/NewHomeworkDialog";
+import LoadingHomework from "../components/LoadingHomework";
 import Homework from "../components/Homework";
 
 import Empty from "../images/empty.svg";
@@ -99,7 +100,13 @@ const HomePage = () => {
   let homeworkDisplayList;
 
   if (homeworksLoading) {
-    homeworkDisplayList = <></>;
+    homeworkDisplayList = (
+      <>
+        <LoadingHomework />
+        <LoadingHomework />
+        <LoadingHomework />
+      </>
+    );
   } else if (homeworksExist) {
     homeworkDisplayList = [];
     for (let i in homeworks) {
