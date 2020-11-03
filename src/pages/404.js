@@ -15,10 +15,7 @@ const NotFoundPage = () => (
       }}
     >
       <h1 style={{ fontSize: "46px" }}>Not Found</h1>
-      <NotFound style = {{
-        width: "500px",
-        height: "auto",
-      }}/>
+      <NotFound style={{ width: "100%", height: "100%" }} />
     </div>
   </Layout>
 );
