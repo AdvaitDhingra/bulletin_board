@@ -23,7 +23,7 @@ const Homework = ({ title, content, docSlug, key, timeout }) => {
 
   return (
     <>
-      <Slide in direction="right" timeout={timeout * 50}>
+      <Slide in direction="right" timeout={timeout * 200}>
         <Card style={{ marginBottom: "5px" }} variant="outlined">
           <CardContent>
             <IconButton
