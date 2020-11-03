@@ -15,12 +15,20 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+//animations:
+
+import Slide from '@material-ui/core/Slide';
+
+
+
+
 const Homework = ({ title, content, docSlug, id }) => {
   const maxSize = 250;
   const [open, setOpen] = useState(false);
 
   return (
     <>
+    <Slide in = {true} timeout = {700} >
       <Card style={{ marginBottom: "5px" }} variant="outlined">
         <CardContent>
           <IconButton
@@ -53,7 +61,9 @@ const Homework = ({ title, content, docSlug, id }) => {
           </CardActions>
         )}
       </Card>
-
+      </Slide>
+      
+          
       <Dialog open={open} onClose={() => setOpen(false)} className = "readmore">
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
