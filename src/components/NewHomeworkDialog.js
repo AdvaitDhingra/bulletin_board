@@ -11,9 +11,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import slugify from "slugify";
 
-//animations:
-
-import Grow from '@material-ui/core/Grow';
 
 
 const NewHomeworkDialog = ({ onClose, doc }) => {
