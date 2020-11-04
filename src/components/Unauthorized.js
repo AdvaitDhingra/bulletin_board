@@ -2,6 +2,7 @@ import React from "react";
 import Auth from "../images/auth.svg";
 import { Link } from "gatsby";
 import Button from "@material-ui/core/Button";
+import SEO from "./SEO";
 
 export default () => (
   <div
@@ -11,6 +12,7 @@ export default () => (
       justifyContent: "center",
     }}
   >
+    <SEO title="Unauthorized" description="This page is sadly reserved to logged in users. Log in to access it." />
     <h1 style={{ fontSize: "46px" }}>Unauthorized</h1>
     <Auth style={{ width: "100%", height: "100%" }} />
     <h3>
