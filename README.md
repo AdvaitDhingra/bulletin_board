@@ -1,3 +1,3 @@
-### Bulletin Board
+# Bulletin Board
 
-# A simple web-app for EF students of the FEG.
+ A simple web-app for EF students at the FEG.
