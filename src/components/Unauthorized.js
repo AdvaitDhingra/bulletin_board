@@ -12,7 +12,10 @@ export default () => (
       justifyContent: "center",
     }}
   >
-    <SEO title="Unauthorized" description="This page is sadly reserved to logged in users. Log in to access it." />
+    <SEO
+      title="Unauthorized"
+      description="This page is sadly reserved to logged in users. Log in to access it."
+    />
     <h1 style={{ fontSize: "46px" }}>Unauthorized</h1>
     <Auth style={{ width: "100%", height: "100%" }} />
     <h3>
