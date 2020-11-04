@@ -8,6 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Set gh-pages pathPrefix
+        uses: shitiomatic/str-replace@master
+        with:
+          find: "pathPrefix: \"/\","
+          replace: "pathPrefix: \"/bulletin_board\","
+          include: "gatsby-config.js"  # Will match all README.md files in any nested directory
       - uses: enriikke/gatsby-gh-pages-action@v2
         with:
           access-token: ${{ secrets.PERSONALACCESTOKEN }}
