@@ -82,6 +82,9 @@ const HomePage = () => {
   const [homeworksLoading, setHomeworksLoading] = React.useState(true);
 
   React.useEffect(() => {
+    // Don't set up listeners if it isn't yet possible
+    if (loading || user === null) return;
+
     const unsub = firebase
       .firestore()
       .collection("homework")
@@ -94,7 +97,7 @@ const HomePage = () => {
       });
 
     return () => unsub();
-  }, [fach, kurs, docSlug]);
+  }, [docSlug, user, loading]);
 
   let homeworkDisplayList;
 
