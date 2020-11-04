@@ -5,6 +5,7 @@ module.exports = {
     author: `@AdvaitDhingra & @arthuro555`,
     siteUrl: `https://feg-boards.netlify.app/`,
   },
+  pathPrefix: "/",
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
