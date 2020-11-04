@@ -3,6 +3,7 @@ module.exports = {
     title: `Bulletin Board`,
     description: `A Board with homework.`,
     author: `@AdvaitDhingra & @arthuro555`,
+    siteUrl: `https://feg-boards.netlify.app/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -50,6 +51,13 @@ module.exports = {
           appId: "1:871520598838:web:79f75461caab638caa1197",
           measurementId: "G-3KNZKXXYPZ",
         },
+      },
+    },
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        policy: [{ userAgent: "*", allow: "/" }],
       },
     },
   ],
