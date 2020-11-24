@@ -1,3 +1,3 @@
-# Bulletin Board
+# FEG Boards
 
- A simple web-app for EF students at the FEG.
+ A simple hpmeworks app for students at the FEG (Friedrich-Ebert-Gymnasium Bonn).

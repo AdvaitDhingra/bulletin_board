@@ -1,7 +1,7 @@
 {
-  "name": "bulletin-board",
+  "name": "feg-board",
   "private": true,
-  "description": "a homework board",
+  "description": "A homework board for the FEG (Friedrich-Ebert-Gymnasium Bonn)",
   "version": "0.1.0",
   "author": "Advait Dhingra and Arthur Pacaud",
   "dependencies": {

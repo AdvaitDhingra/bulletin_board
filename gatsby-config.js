@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Bulletin Board`,
-    description: `A Board with homework.`,
+    title: `FEG Board`,
+    description: `A homeworks board for the FEG.`,
     author: `@AdvaitDhingra & @arthuro555`,
     siteUrl: `https://feg-boards.netlify.app/`,
   },
@@ -28,7 +28,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Bulletin Board`,
+        name: `FEG Board`,
         short_name: `Homeworks`,
         start_url: `/home`,
         background_color: `#663399`,
