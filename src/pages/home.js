@@ -137,7 +137,7 @@ const HomePage = () => {
 
   return (
     <Layout authRequired>
-      <SEO title="Boards" />
+      <SEO title="FEG Board" />
       {loading || user === null ? (
         <LinearProgress />
       ) : (

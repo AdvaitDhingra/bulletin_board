@@ -1,3 +1,3 @@
-# FEG Boards
+# FEG Board
 
- A simple hpmeworks app for students at the FEG (Friedrich-Ebert-Gymnasium Bonn).
+ A simple homeworks app for students at the FEG (Friedrich-Ebert-Gymnasium Bonn).
