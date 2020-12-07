@@ -8,10 +8,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
+
 import Header from "./Header";
 import Unauthorized from "../components/Unauthorized";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
+
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { deepPurple } from "@material-ui/core/colors";
+
 import "../css/layout.css";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: deepPurple,
+  },
+});
 
 const Layout = ({ children, authRequired }) => {
   const [user, loading] = useAuthState();
@@ -27,7 +38,7 @@ const Layout = ({ children, authRequired }) => {
   `);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Header siteTitle={data.site.siteMetadata.title} />
       <main>
         {authRequired && user === null && !loading ? (
@@ -46,7 +57,7 @@ const Layout = ({ children, authRequired }) => {
           Arthur Pacaud
         </a>
       </footer>
-    </>
+    </ThemeProvider>
   );
 };
 
