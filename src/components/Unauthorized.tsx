@@ -1,4 +1,5 @@
 import React from "react";
+//@ts-ignore
 import Auth from "../images/auth.svg";
 import { Link } from "gatsby";
 import Button from "@material-ui/core/Button";

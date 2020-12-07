@@ -15,7 +15,12 @@ import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 
 import slugify from "slugify";
 
-const NewHomeworkDialog = ({ onClose, doc }) => {
+type Props = {
+  onClose: () => void;
+  doc: string;
+};
+
+const NewHomeworkDialog = ({ onClose, doc }: Props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [currentDate, setCurrentDate] = useState(new Date());

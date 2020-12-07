@@ -17,6 +17,16 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 import Slide from "@material-ui/core/Slide";
 
+type Props = {
+  title: string;
+  content: string;
+  startDate: firebase.firestore.Timestamp;
+  dueDate: firebase.firestore.Timestamp;
+  docSlug: string;
+  id: string;
+  timeout: number;
+};
+
 const Homework = ({
   title,
   content,
@@ -25,7 +35,7 @@ const Homework = ({
   docSlug,
   id,
   timeout,
-}) => {
+}: Props) => {
   const maxSize = 250;
   const [open, setOpen] = useState(false);
 

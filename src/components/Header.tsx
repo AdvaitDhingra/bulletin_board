@@ -7,7 +7,7 @@ import { useAuthState } from "../utils/firebase-hooks-gatsby";
 import Fab from "@material-ui/core/Fab";
 import Exit from "@material-ui/icons/MeetingRoom";
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle }: { siteTitle: string }) => {
   const [user, loading] = useAuthState();
 
   return (

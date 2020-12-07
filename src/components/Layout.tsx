@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./Header";
-import Unauthorized from "../components/Unauthorized";
+import Unauthorized from "./Unauthorized";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -23,6 +23,11 @@ const theme = createMuiTheme({
     primary: deepPurple,
   },
 });
+
+type Props = {
+  children: React.ReactChildren;
+  authRequired: boolean;
+};
 
 const Layout = ({ children, authRequired }) => {
   const [user, loading] = useAuthState();

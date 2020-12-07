@@ -21,10 +21,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type Props = {
   onNewHomework: () => void;
-  onOpenSettings: () => void;
 };
 
-const MenuFab = ({ onNewHomework, onOpenSettings }: Props) => {
+const MenuFab = ({ onNewHomework }: Props) => {
   const style = useStyles();
   const [open, setOpen] = React.useState(false);
 
