@@ -8,6 +8,8 @@ import SpeedDial from "@material-ui/lab/SpeedDial";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 import AddIcon from "@material-ui/icons/Add";
+import SettingsIcon from "@material-ui/icons/Settings";
+import AboutIcon from "@material-ui/icons/HelpOutline";
 import CloseIcon from "@material-ui/icons/Close";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
@@ -50,9 +52,15 @@ const MenuFab = ({ onNewHomework }: Props) => {
       />
       <SpeedDialAction
         key="open-settings"
-        icon={<AddIcon />}
+        icon={<SettingsIcon />}
         tooltipTitle="Open the settings"
         onClick={() => navigate("/settings")}
+      />
+      <SpeedDialAction
+        key="about"
+        icon={<AboutIcon />}
+        tooltipTitle="About this website"
+        onClick={() => navigate("/about")}
       />
     </SpeedDial>
   );
