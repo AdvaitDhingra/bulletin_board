@@ -75,8 +75,7 @@ const Homework = ({ docSlug, id, timeout, homework }: Props) => {
             <h3>{title}</h3>
             <p>{content.substring(0, maxSize)}</p>
             <p>
-              Von: {startDateString}, Bis:{" "}
-              {dueDateString}
+              Von: {startDateString}, Bis: {dueDateString}
             </p>
           </CardContent>
           {content.length > maxSize && (
