@@ -2,13 +2,13 @@ import React from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
-import { Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import NewHomeworkDialog from "../components/NewHomeworkDialog";
 import LoadingHomework from "../components/LoadingHomework";
 import Homework from "../components/Homework";
+import MenuFab from "../components/MenuFab";
 
 import Empty from "../images/empty.svg";
 
@@ -18,9 +18,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
-import SettingsIcon from "@material-ui/icons/Settings";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const facher = [
@@ -209,31 +206,7 @@ const HomePage = () => {
             ))}
           </Menu>
           {homeworkDisplayList}
-          <Fab
-            color="primary"
-            aria-label="add"
-            onClick={() => setNewHomework(true)}
-            style={{
-              position: "fixed",
-              bottom: "20px",
-              right: "20px",
-            }}
-          >
-            <AddIcon />
-          </Fab>
-          <Link to="/settings">
-            <Fab
-              size="small"
-              aria-label="settings"
-              style={{
-                position: "fixed",
-                bottom: "25px",
-                right: "90px",
-              }}
-            >
-              <SettingsIcon />
-            </Fab>
-          </Link>
+          <MenuFab onNewHomework={() => setNewHomework(true)} />
           {newHomework && (
             <NewHomeworkDialog
               onClose={() => setNewHomework(false)}
