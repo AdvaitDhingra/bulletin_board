@@ -1,16 +1,12 @@
 import React from "react";
 
-import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import NewHomeworkDialog from "../components/NewHomeworkDialog";
-import LoadingHomework from "../components/LoadingHomework";
-import Homework from "../components/Homework";
 import MenuFab from "../components/MenuFab";
-
-import Empty from "../images/empty.svg";
+import HomeworksLister from "../components/HomeworksLister";
 
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -73,64 +69,6 @@ const HomePage = () => {
   const [anchorElFach, setAnchorElFach] = React.useState(null);
   const [anchorElKurs, setAnchorElKurs] = React.useState(null);
   const [newHomework, setNewHomework] = React.useState(false);
-
-  const [homeworks, setHomeworks] = React.useState(null);
-  const [homeworksExist, setHomeworksExist] = React.useState(false);
-  const [homeworksLoading, setHomeworksLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    // Don't set up listeners if it isn't yet possible
-    if (loading || user === null) return;
-
-    const unsub = firebase
-      .firestore()
-      .collection("homework")
-      .doc(docSlug)
-      .onSnapshot((s) => {
-        const data = s.data();
-        setHomeworks(data);
-        setHomeworksExist(s.exists && Object.keys(data).length !== 0);
-        setHomeworksLoading(false);
-      });
-
-    return () => unsub();
-  }, [docSlug, user, loading]);
-
-  let homeworkDisplayList;
-
-  if (homeworksLoading) {
-    homeworkDisplayList = (
-      <>
-        <LoadingHomework />
-        <LoadingHomework />
-        <LoadingHomework />
-      </>
-    );
-  } else if (homeworksExist) {
-    homeworkDisplayList = [];
-    let timeout = 0;
-    for (let i in homeworks) {
-      let homework = homeworks[i];
-      homeworkDisplayList.push(
-        <Homework
-          id={i}
-          key={i} // This has to be duplicated due to the way react works
-          timeout={++timeout}
-          title={homework.title || "Invalid Title"}
-          content={homework.content || "Invalid Content"}
-          startDate={homework.startDate}
-          dueDate={homework.returnDate}
-          docSlug={docSlug}
-        />
-      );
-    }
-  } else
-    homeworkDisplayList = (
-      <div style={{ margin: "0 35% 0 35%", textAlign: "center" }}>
-        <Empty />
-        <p>This is empty...</p>
-      </div>
-    );
 
   return (
     <Layout authRequired>
@@ -205,7 +143,7 @@ const HomePage = () => {
               </MenuItem>
             ))}
           </Menu>
-          {homeworkDisplayList}
+          {!loading && user ? <HomeworksLister docSlug={docSlug} /> : <></>}
           <MenuFab onNewHomework={() => setNewHomework(true)} />
           {newHomework && (
             <NewHomeworkDialog

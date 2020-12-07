@@ -32,7 +32,7 @@ const NewHomeworkDialog = ({ onClose, doc }: Props) => {
       title: title,
       content: content,
       startDate: currentDate,
-      returnDate: dueDate,
+      dueDate: dueDate,
     };
 
     firebase

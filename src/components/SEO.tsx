@@ -20,7 +20,7 @@ type Props = {
   lang?: string;
   meta?: Array<Meta>;
   title: string;
-}
+};
 
 const SEO: React.VFC<Props> = ({ description, lang, meta, title }: Props) => {
   const { site } = useStaticQuery(
