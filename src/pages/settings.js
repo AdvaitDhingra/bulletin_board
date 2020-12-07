@@ -51,20 +51,17 @@ const SettingsPage = () => {
           </ToggelableMenu>
           <ToggelableMenu title="Password Settings">
             <TextField
-              outlined
               label="Old Password"
               onChange={(e) => setOldPassword(e.target.value)}
               type="password"
               autoComplete="current-password"
             />
             <TextField
-              outlined
               label="New Password"
               onChange={(e) => setNewPassword(e.target.value)}
               type="password"
             />
             <TextField
-              outlined
               label="New Password Again"
               onChange={(e) => setNewPassword2(e.target.value)}
               type="password"

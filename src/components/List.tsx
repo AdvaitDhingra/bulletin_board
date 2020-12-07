@@ -5,8 +5,8 @@ import ListItem from "@material-ui/core/ListItem";
 export default ({ children }) => {
   return (
     <List>
-      {children.map((child) => (
-        <ListItem>{child}</ListItem>
+      {children.map((child, i) => (
+        <ListItem key={i}>{child}</ListItem>
       ))}
     </List>
   );
