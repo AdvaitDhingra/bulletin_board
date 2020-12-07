@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import firebase from "gatsby-plugin-firebase";
 import HomeworkData, { isHomeworkData } from "../types/HomeworkData";
 
 import Card from "@material-ui/core/Card";
@@ -19,13 +18,13 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Slide from "@material-ui/core/Slide";
 
 type Props = {
-  docSlug: string;
   id: string;
   timeout: number;
   homework: HomeworkData;
+  onDelete: () => void;
 };
 
-const Homework = ({ docSlug, id, timeout, homework }: Props) => {
+const Homework = ({ id, timeout, homework, onDelete }: Props) => {
   const { title, content, startDate, dueDate } = homework;
   const maxSize = 250;
   const [open, setOpen] = useState(false);
@@ -52,22 +51,7 @@ const Homework = ({ docSlug, id, timeout, homework }: Props) => {
         <Card style={{ marginBottom: "5px" }} variant="outlined">
           <CardContent>
             <IconButton
-              onClick={() => {
-                firebase
-                  .firestore()
-                  .collection("homework")
-                  .doc(docSlug)
-                  .get()
-                  .then((e) => {
-                    const data = e.data();
-                    delete data[id];
-                    firebase
-                      .firestore()
-                      .collection("homework")
-                      .doc(docSlug)
-                      .set(data);
-                  });
-              }}
+              onClick={() => onDelete()}
               style={{ float: "right" }}
             >
               <DeleteIcon />

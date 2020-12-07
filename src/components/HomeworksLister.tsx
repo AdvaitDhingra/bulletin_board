@@ -3,47 +3,61 @@ import React from "react";
 import firebase from "gatsby-plugin-firebase";
 import LoadingHomework from "./LoadingHomework";
 import Homework from "./Homework";
-import HomeworkData from "../types/HomeworkData";
+import HomeworkData, { isHomeworkData } from "../types/HomeworkData";
+import usePermissions from "../utils/usePermissions";
 
 //@ts-ignore
 import Empty from "../images/empty.svg";
 
-function HomeworksLister({ docSlug }) {
-  const [homeworks, setHomeworks] = React.useState<HomeworkData>(null);
+type Props = {
+  courseName: string;
+  subCourseName?: string;
+};
+
+function HomeworksLister({ courseName, subCourseName }: Props) {
+  const [homeworks, setHomeworks] = React.useState<
+    firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>
+  >(null);
   const [loaded, setLoaded] = React.useState(false);
+  const permissions = usePermissions();
+  const homeworksRef =
+    permissions === null
+      ? null
+      : firebase
+          .firestore()
+          .collection("classes")
+          .doc(permissions.className)
+          .collection("courses")
+          .doc(courseName)
+          .collection("subCourses")
+          .doc(subCourseName || "default")
+          .collection("homeworks");
 
   React.useEffect(() => {
-    const unsub = firebase
-      .firestore()
-      .collection("homework")
-      .doc(docSlug)
-      .onSnapshot((s) => {
-        const data = s.data() as HomeworkData;
-        setHomeworks(data);
-        setLoaded(true);
-      });
-
+    if (homeworksRef === null) return;
+    const unsub = homeworksRef.orderBy("startDate").onSnapshot((data) => {
+      setHomeworks(data);
+      setLoaded(true);
+    });
     return () => unsub();
-  }, [docSlug]);
+  }, [permissions, courseName, subCourseName]);
 
-  const homeworksExist = () =>
-    homeworks != null && Object.keys(homeworks).length !== 0;
-
+  const homeworksExist = () => homeworks != null && !homeworks.empty;
   let timeout = 0;
 
   return (
     <>
       {homeworksExist() ? (
-        Object.entries(homeworks).map((homework: [string, HomeworkData], i) => (
+        homeworks.docs.map((homework) => (
           <Homework
-            id={homework[0]}
-            key={homework[0]}
+            id={homework.id}
+            key={homework.id}
             timeout={++timeout}
-            homework={homework[1]}
-            docSlug={docSlug}
+            homework={homework.data() as HomeworkData}
+            onDelete={() => homeworksRef.doc(homework.id).delete()}
           />
         ))
-      ) : loaded ? (
+      ) : loaded || permissions === null ? (
         <div style={{ margin: "0 35% 0 35%", textAlign: "center" }}>
           <Empty />
           <p>This is empty...</p>

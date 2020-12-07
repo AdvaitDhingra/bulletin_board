@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import firebase from "gatsby-plugin-firebase";
 
+import usePermissions from "../utils/usePermissions";
+
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -17,30 +19,43 @@ import slugify from "slugify";
 
 type Props = {
   onClose: () => void;
-  doc: string;
+  courseName: string;
+  subCourseName: string;
 };
 
-const NewHomeworkDialog = ({ onClose, doc }: Props) => {
+const NewHomeworkDialog = ({ onClose, courseName, subCourseName }: Props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [currentDate, setCurrentDate] = useState(new Date());
   const [dueDate, setDueDate] = useState(new Date());
+  const permissions = usePermissions();
+  const homeworksRef =
+    permissions === null
+      ? null
+      : firebase
+          .firestore()
+          .collection("classes")
+          .doc(permissions.className)
+          .collection("courses")
+          .doc(courseName)
+          .collection("subCourses")
+          .doc(subCourseName || "default")
+          .collection("homeworks");
 
   function submit() {
-    const homework = {};
-    homework[slugify(title)] = {
-      title: title,
-      content: content,
-      startDate: currentDate,
-      dueDate: dueDate,
-    };
-
-    firebase
-      .firestore()
-      .collection("homework")
-      .doc(doc)
-      .set(homework, { merge: true })
-      .then(onClose);
+    if (homeworksRef !== null)
+      homeworksRef
+        .doc(slugify(title))
+        .set(
+          {
+            title: title,
+            content: content,
+            startDate: currentDate,
+            dueDate: dueDate,
+          },
+          { merge: true }
+        )
+        .then(onClose);
   }
 
   return (

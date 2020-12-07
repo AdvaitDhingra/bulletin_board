@@ -64,8 +64,6 @@ const HomePage = () => {
   const [fach, setFach] = React.useState(0);
   const [kurs, setKurs] = React.useState(0);
 
-  const docSlug = facher[fach] + kurse[facher[fach]][kurs];
-
   const [anchorElFach, setAnchorElFach] = React.useState(null);
   const [anchorElKurs, setAnchorElKurs] = React.useState(null);
   const [newHomework, setNewHomework] = React.useState(false);
@@ -143,12 +141,20 @@ const HomePage = () => {
               </MenuItem>
             ))}
           </Menu>
-          {!loading && user ? <HomeworksLister docSlug={docSlug} /> : <></>}
+          {!loading && user ? (
+            <HomeworksLister
+              courseName={facher[fach]}
+              subCourseName={kurse[facher[fach]][kurs]}
+            />
+          ) : (
+            <></>
+          )}
           <MenuFab onNewHomework={() => setNewHomework(true)} />
           {newHomework && (
             <NewHomeworkDialog
               onClose={() => setNewHomework(false)}
-              doc={docSlug}
+              courseName={facher[fach]}
+              subCourseName={kurse[facher[fach]][kurs]}
             />
           )}
         </>
