@@ -2,12 +2,15 @@ import React from "react";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
-import { navigate } from "gatsby";
+import { navigate, Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Alert from "@material-ui/lab/Alert";
+
+import GHIcon from "@material-ui/icons/GitHub";
+import AboutIcon from "@material-ui/icons/Help";
 
 import "../css/index.css";
 
@@ -40,28 +43,59 @@ const IndexPage = () => {
       {loading ? (
         <LinearProgress />
       ) : (
-        <form className="login" onSubmit={submit}>
-          {error && (
-            <Alert variant="outlined" severity="error">
-              Error loging in: {error}
-            </Alert>
-          )}
-          <input
-            ref={userField}
-            type="text"
-            placeholder="E-Mail adresse"
-            className="login_text"
-            id="user"
-          />
-          <input
-            ref={passwordField}
-            type="password"
-            placeholder="Kennwort"
-            className="login_text"
-            id="password"
-          />
-          <button className="loginButton">Login</button>
-        </form>
+        <>
+          <h1 style={{ textAlign: "center" }}>
+            Welcome to FEG Boards! Please log in.
+          </h1>
+          <form className="login" onSubmit={submit}>
+            {error && (
+              <Alert variant="outlined" severity="error">
+                Error loging in: {error}
+              </Alert>
+            )}
+            <input
+              ref={userField}
+              type="text"
+              placeholder="E-Mail adresse"
+              className="login_text"
+              id="user"
+            />
+            <input
+              ref={passwordField}
+              type="password"
+              placeholder="Kennwort"
+              className="login_text"
+              id="password"
+            />
+            <button className="loginButton">Login</button>
+          </form>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "10px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                width: "200px",
+              }}
+            >
+              <a
+                href="https://github.com/AdvaitDhingra/bulletin_board"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GHIcon />
+              </a>
+              <Link to="/about">
+                <AboutIcon />
+              </Link>
+            </div>
+          </div>
+        </>
       )}
     </Layout>
   );
