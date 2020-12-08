@@ -3,9 +3,3 @@
   bottom: 5px;
   width: 100%;
 }
-
-.fill-window {
-  position: absolute;
-  min-height: 100vh;
-  width: 100%;
-}

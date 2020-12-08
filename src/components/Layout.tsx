@@ -55,8 +55,12 @@ const Layout = ({ children, authRequired }: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <div
-        className="fill-window"
-        style={{ backgroundColor: theme.palette.background.default }}
+        style={{
+          backgroundColor: theme.palette.background.default,
+          position: "absolute",
+          minHeight: "100vh",
+          width: "100%",
+        }}
       >
         <Header
           siteTitle={data.site.siteMetadata.title}
