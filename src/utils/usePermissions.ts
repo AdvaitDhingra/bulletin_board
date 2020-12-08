@@ -14,6 +14,7 @@ const allHooks: Set<() => any> = new Set();
  * Forces re-download of permissions.
  */
 const updatePermissions = () => {
+  if (firebase.auth == null) return;
   const user = firebase.auth().currentUser;
   if (user === null) return;
 
@@ -34,7 +35,8 @@ const updatePermissions = () => {
 };
 
 updatePermissions();
-firebase.auth().onAuthStateChanged(updatePermissions);
+if (firebase.auth != null)
+  firebase.auth().onAuthStateChanged(updatePermissions);
 
 /**
  * Download and caches user permissions, and forces a rerender whenever permissions are updated.

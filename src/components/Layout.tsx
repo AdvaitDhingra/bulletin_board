@@ -29,13 +29,16 @@ type Props = {
 const Layout = ({ children, authRequired }: Props) => {
   const [user, loading] = useAuthState();
   const [dark, setDark] = React.useState(
-    window ? window.localStorage.getItem("IsDark") === "true" : false
+    globalThis === globalThis.window
+      ? window.localStorage.getItem("IsDark") === "true"
+      : false
   );
   const theme = dark ? Dark : Light;
 
-  if (window) {
-    React.useEffect(() =>
-      window.localStorage.setItem("IsDark", dark ? "true" : "false")
+  if (globalThis === globalThis.window) {
+    React.useEffect(
+      () => window.localStorage.setItem("IsDark", dark ? "true" : "false"),
+      [dark]
     );
   }
 
