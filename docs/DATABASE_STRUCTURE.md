@@ -31,7 +31,7 @@ The database is a document oriented NoSQL database, firestore. The data is organ
             courses: [ // List of courses a user is in
                 [courseName]: [
                     [subCourseNames]: string[], // List of names of the subcourses the user is in.
-                ], 
+                ],
             ],
         },
     ],

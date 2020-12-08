@@ -8,6 +8,7 @@ import NewHomeworkDialog from "../components/NewHomeworkDialog";
 import MenuFab from "../components/MenuFab";
 import HomeworksLister from "../components/HomeworksLister";
 
+import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -83,7 +84,10 @@ const HomePage = () => {
               aria-label="Fach"
               onClick={(e) => setAnchorElFach(e.currentTarget)}
             >
-              <ListItemText primary="Fach:" secondary={facher[fach]} />
+              <ListItemText
+                primary={<Typography color="primary">Fach:</Typography>}
+                secondary={facher[fach]}
+              />
               <ExpandMoreIcon />
             </ListItem>
             <ListItem
@@ -94,7 +98,7 @@ const HomePage = () => {
               onClick={(e) => setAnchorElKurs(e.currentTarget)}
             >
               <ListItemText
-                primary="Kurs:"
+                primary={<Typography color="primary">Kurs:</Typography>}
                 secondary={kurse[facher[fach]][kurs]}
               />
               <ExpandMoreIcon />

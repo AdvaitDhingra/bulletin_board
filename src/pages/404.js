@@ -2,6 +2,9 @@ import React from "react";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
+
+import Typography from "@material-ui/core/Typography";
+
 import NotFound from "../images/notFound.svg";
 
 const NotFoundPage = () => (
@@ -14,7 +17,9 @@ const NotFoundPage = () => (
         justifyContent: "center",
       }}
     >
-      <h1 style={{ fontSize: "46px" }}>Not Found</h1>
+      <Typography color="textPrimary" variant="h5" style={{ fontSize: "46px" }}>
+        Not Found
+      </Typography>
       <NotFound style={{ width: "100%", height: "100%" }} />
     </div>
   </Layout>

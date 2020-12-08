@@ -50,10 +50,7 @@ const Homework = ({ id, timeout, homework, onDelete }: Props) => {
       <Slide in direction="right" timeout={timeout * 200}>
         <Card style={{ marginBottom: "5px" }} variant="outlined">
           <CardContent>
-            <IconButton
-              onClick={() => onDelete()}
-              style={{ float: "right" }}
-            >
+            <IconButton onClick={() => onDelete()} style={{ float: "right" }}>
               <DeleteIcon />
             </IconButton>
             <h3>{title}</h3>

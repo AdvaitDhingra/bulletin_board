@@ -8,6 +8,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Alert from "@material-ui/lab/Alert";
+import Typography from "@material-ui/core/Typography";
 
 import GHIcon from "@material-ui/icons/GitHub";
 import AboutIcon from "@material-ui/icons/Help";
@@ -44,9 +45,9 @@ const IndexPage = () => {
         <LinearProgress />
       ) : (
         <>
-          <h1 style={{ textAlign: "center" }}>
+          <Typography variant="h3" align="center" color="textPrimary">
             Welcome to FEG Boards! Please log in.
-          </h1>
+          </Typography>
           <form className="login" onSubmit={submit}>
             {error && (
               <Alert variant="outlined" severity="error">
@@ -88,10 +89,10 @@ const IndexPage = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <GHIcon />
+                <GHIcon color="primary" />
               </a>
               <Link to="/about">
-                <AboutIcon />
+                <AboutIcon color="primary" />
               </Link>
             </div>
           </div>

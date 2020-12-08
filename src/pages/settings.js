@@ -8,6 +8,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import ToggelableMenu from "../components/ToggelableMenu";
 
+import Container from "@material-ui/core/Container";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -35,7 +36,7 @@ const SettingsPage = () => {
       {loading ? (
         <LinearProgress />
       ) : (
-        <>
+        <Container maxWidth="md">
           <ToggelableMenu title="Profile Settings">
             <TextField inputRef={email} label="Email" type="email" />
             <Button
@@ -107,7 +108,7 @@ const SettingsPage = () => {
               <ArrowBackIcon />
             </Fab>
           </Link>
-        </>
+        </Container>
       )}
     </Layout>
   );

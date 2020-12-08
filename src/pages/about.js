@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 
 import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 import Fab from "@material-ui/core/Fab";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
@@ -11,16 +12,16 @@ const AboutPage = () => (
   <Layout>
     <SEO title="About this site" />
     <Container maxWidth="sm">
-      <h2>
+      <Typography variant="h4" align="center" color="textPrimary">
         <span role="img" aria-label="Waving hand emoji">
           👋
         </span>{" "}
         Hello there!
-      </h2>
-      <p>
-        This site has been created by Arthur Pacaud and Advait Dhingra for the
-        Friedrich-Eberyt-Gymnasium Bonn. Here, Students can share their
-        homework. This site is open source, check it out on{" "}
+      </Typography>
+      <Typography align="center" color="textSecondary">
+        This website has been created by Arthur Pacaud and Advait Dhingra for
+        the Friedrich-Ebert-Gymnasium Bonn. Here, Students can share their
+        homework. This website is open source, check it out on{" "}
         <a
           href="https://github.com/AdvaitDhingra/bulletin_board"
           referrerPolicy="noreferrer"
@@ -28,7 +29,7 @@ const AboutPage = () => (
           Github
         </a>
         !
-      </p>
+      </Typography>
     </Container>
     <Fab
       color="secondary"

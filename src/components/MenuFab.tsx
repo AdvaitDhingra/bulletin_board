@@ -1,5 +1,6 @@
 import React from "react";
 import { navigate } from "gatsby";
+import firebase from "gatsby-plugin-firebase";
 
 import makeStyles from "@material-ui/styles/makeStyles";
 import type { Theme } from "@material-ui/core";
@@ -55,6 +56,15 @@ const MenuFab = ({ onNewHomework }: Props) => {
         icon={<SettingsIcon />}
         tooltipTitle="Open the settings"
         onClick={() => navigate("/settings")}
+      />
+      <SpeedDialAction
+        key="logout"
+        icon={<CloseIcon />}
+        tooltipTitle="Log out"
+        onClick={() => {
+          firebase.auth().signOut();
+          navigate("/");
+        }}
       />
       <SpeedDialAction
         key="about"

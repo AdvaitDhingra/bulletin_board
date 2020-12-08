@@ -8,29 +8,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
+import { useAuthState } from "../utils/firebase-hooks-gatsby";
 
 import Header from "./Header";
 import Unauthorized from "./Unauthorized";
-import { useAuthState } from "../utils/firebase-hooks-gatsby";
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { deepPurple } from "@material-ui/core/colors";
+import Light from "./Themes/Light";
+import Dark from "./Themes/Dark";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 import "../css/layout.css";
-
-const theme = createMuiTheme({
-  palette: {
-    primary: deepPurple,
-  },
-});
 
 type Props = {
   children: React.ReactChildren;
   authRequired: boolean;
 };
 
-const Layout = ({ children, authRequired }) => {
+const Layout = ({ children, authRequired }: Props) => {
   const [user, loading] = useAuthState();
+  const [dark, setDark] = React.useState(
+    window ? window.localStorage.getItem("IsDark") === "true" : false
+  );
+  const theme = dark ? Dark : Light;
+
+  if (window) {
+    React.useEffect(() =>
+      window.localStorage.setItem("IsDark", dark ? "true" : "false")
+    );
+  }
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -44,24 +51,31 @@ const Layout = ({ children, authRequired }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <main>
-        {authRequired && user === null && !loading ? (
-          <Unauthorized />
-        ) : (
-          children
-        )}
-      </main>
-      <footer className="footer">
-        © {new Date().getFullYear()},{" "}
-        <a href="mailto:dhingra.co.in" className="Name">
-          Advait Dhingra
-        </a>{" "}
-        &{" "}
-        <a href="https://github.com/arthuro555" className="Name">
-          Arthur Pacaud
-        </a>
-      </footer>
+      <div
+        className="fill-window"
+        style={{ backgroundColor: theme.palette.background.default }}
+      >
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          setDark={setDark}
+          dark={dark}
+        />
+        <main>
+          {authRequired && user === null && !loading ? (
+            <Unauthorized />
+          ) : (
+            children
+          )}
+        </main>
+        <div style={{ marginTop: "33px" }} />
+        <footer className="footer">
+          <Typography variant="subtitle2" color="textPrimary" align="center">
+            © {new Date().getFullYear()},{" "}
+            <Link href="mailto:dhingra.co.in">Advait Dhingra</Link> &{" "}
+            <Link href="https://github.com/arthuro555">Arthur Pacaud</Link>
+          </Typography>
+        </footer>
+      </div>
     </ThemeProvider>
   );
 };

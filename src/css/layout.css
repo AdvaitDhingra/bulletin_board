@@ -1,13 +1,11 @@
-.Name {
-  color: black;
-}
-.Name:hover {
-  color: blue;
-}
 .footer {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  gap: 4px;
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+}
+
+.fill-window {
+  position: absolute;
+  min-height: 100vh;
+  width: 100%;
 }

@@ -22,8 +22,8 @@ const updatePermissions = () => {
     lastUserID = user.uid;
     unsub();
     unsub = doc.onSnapshot(updatePermissions);
-  } 
-  if(unsub === null) unsub = doc.onSnapshot(updatePermissions);
+  }
+  if (unsub === null) unsub = doc.onSnapshot(updatePermissions);
   doc
     .get()
     .then((d) => d.data())

@@ -3,11 +3,12 @@ import React from "react";
 import firebase from "gatsby-plugin-firebase";
 import LoadingHomework from "./LoadingHomework";
 import Homework from "./Homework";
-import HomeworkData, { isHomeworkData } from "../types/HomeworkData";
+import HomeworkData from "../types/HomeworkData";
 import usePermissions from "../utils/usePermissions";
 
 //@ts-ignore
 import Empty from "../images/empty.svg";
+import { Typography } from "@material-ui/core";
 
 type Props = {
   courseName: string;
@@ -57,10 +58,12 @@ function HomeworksLister({ courseName, subCourseName }: Props) {
             onDelete={() => homeworksRef.doc(homework.id).delete()}
           />
         ))
-      ) : loaded || permissions === null ? (
+      ) : loaded ? (
         <div style={{ margin: "0 35% 0 35%", textAlign: "center" }}>
           <Empty />
-          <p>This is empty...</p>
+          <Typography variant="caption" color="textPrimary">
+            This is empty...
+          </Typography>
         </div>
       ) : (
         <>
