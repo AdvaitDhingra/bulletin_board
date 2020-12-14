@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://feg-boards.netlify.app/sitemap.xml
+Host: https://feg-boards.netlify.app
