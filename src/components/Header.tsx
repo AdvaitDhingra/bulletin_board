@@ -20,11 +20,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type Props = {
   siteTitle: string;
+  titleRedirect: string;
   setDark: (dark: boolean) => void;
   dark: boolean;
 };
 
-const Header = ({ siteTitle, setDark, dark }: Props) => {
+const Header = ({ siteTitle, titleRedirect, setDark, dark }: Props) => {
   const style = useStyles();
 
   return (
@@ -40,7 +41,7 @@ const Header = ({ siteTitle, setDark, dark }: Props) => {
       >
         <h1 style={{ margin: 0 }}>
           <Link
-            to="/home"
+            to={titleRedirect}
             style={{
               color: `white`,
               textDecoration: `none`,

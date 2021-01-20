@@ -64,6 +64,7 @@ const Layout = ({ children, authRequired }: Props) => {
       >
         <Header
           siteTitle={data.site.siteMetadata.title}
+          titleRedirect={user ? "/home" : "/"}
           setDark={setDark}
           dark={dark}
         />
