@@ -9,6 +9,7 @@ import SEO from "../components/SEO";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Alert from "@material-ui/lab/Alert";
 import Typography from "@material-ui/core/Typography";
+import MUILink from "@material-ui/core/Link";
 
 import GHIcon from "@material-ui/icons/GitHub";
 import AboutIcon from "@material-ui/icons/Help";
@@ -84,13 +85,13 @@ const IndexPage = () => {
                 width: "200px",
               }}
             >
-              <a
+              <MUILink
                 href="https://github.com/AdvaitDhingra/bulletin_board"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
               >
                 <GHIcon color="primary" />
-              </a>
+              </MUILink>
               <Link to="/about">
                 <AboutIcon color="primary" />
               </Link>

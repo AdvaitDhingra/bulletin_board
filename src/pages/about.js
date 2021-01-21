@@ -7,6 +7,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Fab from "@material-ui/core/Fab";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Link from "@material-ui/core/Link";
 
 const AboutPage = () => (
   <Layout>
@@ -22,12 +23,13 @@ const AboutPage = () => (
         This website has been created by Arthur Pacaud and Advait Dhingra for
         the Friedrich-Ebert-Gymnasium Bonn. Here, Students can share their
         homework. This website is open source, check it out on{" "}
-        <a
+        <Link
           href="https://github.com/AdvaitDhingra/bulletin_board"
-          referrerPolicy="noreferrer"
+          target="_blank"
+          rel="noopener"
         >
-          Github
-        </a>
+          GitHub
+        </Link>
         !
       </Typography>
     </Container>
