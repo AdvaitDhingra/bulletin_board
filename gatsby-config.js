@@ -1,9 +1,15 @@
+const { render } = require("mustache");
+
 module.exports = {
   siteMetadata: {
-    title: `FEG Board`,
-    description: `A homeworks board for the FEG.`,
-    author: `@AdvaitDhingra & @arthuro555`,
+    siteName: `FEG Board`,
+    description: `This website has been created by {{author}} for the {{schoolName}}. Here, students and teachers can share homework, or use other scholar tools.`,
+    author: `Advait Dhingra and Arthur Pacaud`,
+    schoolName: "Friedrich-Ebert-Gymnasium Bonn",
+    schoolShortName: "FEG",
     siteUrl: `https://feg-boards.netlify.app/`,
+    githubLink: `https://github.com/AdvaitDhingra/bulletin_board`,
+    googleSiteVerification: `SPe1RGF_Ex23b_1nhORjCEWcO771TP6KshYM6hup_N8`,
   },
   pathPrefix: "/",
   plugins: [
@@ -63,3 +69,8 @@ module.exports = {
     },
   ],
 };
+
+module.exports.siteMetadata.description = render(
+  module.exports.siteMetadata.description,
+  module.exports.siteMetadata
+);

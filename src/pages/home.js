@@ -71,7 +71,10 @@ const HomePage = () => {
 
   return (
     <Layout authRequired>
-      <SEO title="FEG Board" />
+      <SEO
+        title="Homework"
+        description="You need to be logged in to see this. All your homework is listed here."
+      />
       {loading || user === null ? (
         <LinearProgress />
       ) : (

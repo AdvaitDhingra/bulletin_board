@@ -9,7 +9,10 @@ import NotFound from "../images/notFound.svg";
 
 const NotFoundPage = () => (
   <Layout>
-    <SEO title="404: Not found" />
+    <SEO
+      title="404: Not found"
+      description="The page you are trying to access does not exist."
+    />
     <div
       style={{
         margin: "0 10% 25px 10%",

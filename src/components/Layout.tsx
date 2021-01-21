@@ -42,11 +42,15 @@ const Layout = ({ children, authRequired }: Props) => {
     );
   }
 
-  const data = useStaticQuery(graphql`
+  const {
+    site: {
+      siteMetadata: { siteName },
+    },
+  } = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
         siteMetadata {
-          title
+          siteName
         }
       }
     }
@@ -63,7 +67,7 @@ const Layout = ({ children, authRequired }: Props) => {
         }}
       >
         <Header
-          siteTitle={data.site.siteMetadata.title}
+          siteTitle={siteName}
           titleRedirect={user ? "/home" : "/"}
           setDark={setDark}
           dark={dark}
@@ -78,8 +82,11 @@ const Layout = ({ children, authRequired }: Props) => {
         <div style={{ marginTop: "33px" }} />
         <footer className="footer">
           <Typography variant="subtitle2" color="textPrimary" align="center">
-            © {new Date().getFullYear()},{" "}
-            <Link href="mailto:dhingra.co.in">Advait Dhingra</Link> &{" "}
+            © {new Date().getFullYear()}, made with{" "}
+            <span role="img" aria-label="love">
+              💖
+            </span>{" "}
+            by <Link href="mailto:dhingra.co.in">Advait Dhingra</Link> &{" "}
             <Link href="https://github.com/arthuro555">Arthur Pacaud</Link>
           </Typography>
         </footer>

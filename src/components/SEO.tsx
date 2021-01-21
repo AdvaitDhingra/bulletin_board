@@ -28,7 +28,7 @@ const SEO: React.VFC<Props> = ({ description, lang, meta, title }: Props) => {
       query {
         site {
           siteMetadata {
-            title
+            siteName
             description
             author
           }
@@ -46,7 +46,7 @@ const SEO: React.VFC<Props> = ({ description, lang, meta, title }: Props) => {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${site.siteMetadata.siteName}`}
       meta={[
         {
           name: `description`,
@@ -66,7 +66,7 @@ const SEO: React.VFC<Props> = ({ description, lang, meta, title }: Props) => {
         },
         {
           name: `google-site-verification`,
-          content: `SPe1RGF_Ex23b_1nhORjCEWcO771TP6KshYM6hup_N8`,
+          content: site.siteMetadata.googleSiteVerification,
         },
         {
           name: `twitter:card`,

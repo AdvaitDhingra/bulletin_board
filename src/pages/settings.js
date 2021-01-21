@@ -32,7 +32,10 @@ const SettingsPage = () => {
 
   return (
     <Layout authRequired>
-      <SEO title="Settings" description="Set you user settings here!" />
+      <SEO
+        title="Settings"
+        description="On this setttings page, you can change your password or email, and manage your account generally."
+      />
       {loading ? (
         <LinearProgress />
       ) : (

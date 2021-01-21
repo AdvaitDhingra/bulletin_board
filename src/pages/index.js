@@ -1,4 +1,5 @@
 import React from "react";
+import { graphql } from "gatsby";
 
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
@@ -16,7 +17,25 @@ import AboutIcon from "@material-ui/icons/Help";
 
 import "../css/index.css";
 
-const IndexPage = () => {
+export const query = graphql`
+  query IndexPageQuery {
+    site {
+      siteMetadata {
+        siteName
+        schoolShortName
+        githubLink
+      }
+    }
+  }
+`;
+
+const IndexPage = ({
+  data: {
+    site: {
+      siteMetadata: { siteName, schoolShortName, githubLink },
+    },
+  },
+}) => {
   const userField = React.useRef();
   const passwordField = React.useRef();
   const [error, setError] = React.useState(null);
@@ -41,13 +60,16 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Login" />
+      <SEO
+        title="Login"
+        description={`Welcome to ${siteName}, a place for students of the ${schoolShortName} to share their homework. Please log in or register before using the services!`}
+      />
       {loading ? (
         <LinearProgress />
       ) : (
         <>
           <Typography variant="h3" align="center" color="textPrimary">
-            Welcome to FEG Boards! Please log in.
+            Welcome to {siteName}! Please log in.
           </Typography>
           <form className="login" onSubmit={submit}>
             {error && (
@@ -85,11 +107,7 @@ const IndexPage = () => {
                 width: "200px",
               }}
             >
-              <MUILink
-                href="https://github.com/AdvaitDhingra/bulletin_board"
-                target="_blank"
-                rel="noopener"
-              >
+              <MUILink href={githubLink} target="_blank" rel="noopener">
                 <GHIcon color="primary" />
               </MUILink>
               <Link to="/about" state={{ fromSelf: true }}>
