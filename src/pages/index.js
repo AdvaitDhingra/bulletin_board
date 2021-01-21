@@ -92,7 +92,7 @@ const IndexPage = () => {
               >
                 <GHIcon color="primary" />
               </MUILink>
-              <Link to="/about">
+              <Link to="/about" state={{ fromSelf: true }}>
                 <AboutIcon color="primary" />
               </Link>
             </div>

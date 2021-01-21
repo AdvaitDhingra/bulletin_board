@@ -70,7 +70,7 @@ const MenuFab = ({ onNewHomework }: Props) => {
         key="about"
         icon={<AboutIcon />}
         tooltipTitle="About this website"
-        onClick={() => navigate("/about")}
+        onClick={() => navigate("/about", { state: { fromSelf: true } })}
       />
     </SpeedDial>
   );

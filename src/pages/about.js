@@ -1,4 +1,5 @@
 import React from "react";
+import { navigate } from "gatsby";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -9,7 +10,7 @@ import Fab from "@material-ui/core/Fab";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Link from "@material-ui/core/Link";
 
-const AboutPage = () => (
+const AboutPage = ({ location: { state } }) => (
   <Layout>
     <SEO title="About this site" />
     <Container maxWidth="sm">
@@ -42,7 +43,9 @@ const AboutPage = () => (
         left: "20px",
       }}
       onClick={() => {
-        if (window && window.history) window.history.back();
+        if (window && window.history && state && state.fromSelf)
+          window.history.back();
+        else navigate("/");
       }}
     >
       <ArrowBackIcon />
