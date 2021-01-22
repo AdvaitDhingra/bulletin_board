@@ -12,6 +12,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -34,11 +35,11 @@ const Homework = ({ id, timeout, homework, onDelete }: Props) => {
       <Slide in direction="right" timeout={timeout * 200}>
         <Card style={{ marginBottom: "5px" }} variant="outlined">
           <CardContent>
-            <p style={{ fontSize: "16px", color: "red" }}>
+            <Typography color="error" style={{ fontSize: "16px" }}>
               <Trans>
                 Invalid Homework. Please report this error to a developer.
               </Trans>
-            </p>
+            </Typography>
           </CardContent>
         </Card>
       </Slide>
@@ -47,9 +48,11 @@ const Homework = ({ id, timeout, homework, onDelete }: Props) => {
   const startDateString = startDate.toDate().toLocaleDateString("de");
   const dueDateString = dueDate.toDate().toLocaleDateString("de");
   const dates = (
-    <Trans>
-      From: {{ startDateString }}, To: {{ dueDateString }}
-    </Trans>
+    <Typography variant="subtitle2">
+      <Trans>
+        From: {{ startDateString }}, To: {{ dueDateString }}
+      </Trans>
+    </Typography>
   );
 
   return (
@@ -60,7 +63,7 @@ const Homework = ({ id, timeout, homework, onDelete }: Props) => {
             <IconButton onClick={() => onDelete()} style={{ float: "right" }}>
               <DeleteIcon />
             </IconButton>
-            <h3>{title}</h3>
+            <Typography variant="h6">{title}</Typography>
             <article>{content.substring(0, maxSize)}</article>
             <footer>{dates}</footer>
           </CardContent>
