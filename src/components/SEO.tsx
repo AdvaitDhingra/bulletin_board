@@ -7,7 +7,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { Helmet } from "react-helmet";
+import { Helmet } from "gatsby-plugin-react-i18next";
 import { useStaticQuery, graphql } from "gatsby";
 
 type Meta = {
@@ -22,7 +22,7 @@ type Props = {
   title: string;
 };
 
-const SEO: React.VFC<Props> = ({ description, lang, meta, title }: Props) => {
+const SEO: React.VFC<Props> = ({ description, meta, title }: Props) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -42,9 +42,6 @@ const SEO: React.VFC<Props> = ({ description, lang, meta, title }: Props) => {
   return (
     //@ts-ignore
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.siteName}`}
       meta={[

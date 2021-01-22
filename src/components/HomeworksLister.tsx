@@ -1,6 +1,7 @@
 import React from "react";
-
+import { Trans } from "gatsby-plugin-react-i18next";
 import firebase from "gatsby-plugin-firebase";
+
 import LoadingHomework from "./LoadingHomework";
 import Homework from "./Homework";
 import HomeworkData from "../types/HomeworkData";
@@ -17,14 +18,14 @@ type Props = {
 
 function HomeworksLister({ courseName, subCourseName }: Props) {
   const [homeworks, setHomeworks] = React.useState<
-    firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>
+    firebase.firestore.QuerySnapshot<HomeworkData>
   >(null);
   const [loaded, setLoaded] = React.useState(false);
   const permissions = usePermissions();
   const homeworksRef =
     permissions === null
       ? null
-      : firebase
+      : (firebase
           .firestore()
           .collection("classes")
           .doc(permissions.className)
@@ -32,7 +33,9 @@ function HomeworksLister({ courseName, subCourseName }: Props) {
           .doc(courseName)
           .collection("subCourses")
           .doc(subCourseName || "default")
-          .collection("homeworks");
+          .collection("homeworks") as firebase.firestore.CollectionReference<
+          HomeworkData
+        >);
 
   React.useEffect(() => {
     if (homeworksRef === null) return;
@@ -54,7 +57,7 @@ function HomeworksLister({ courseName, subCourseName }: Props) {
             id={homework.id}
             key={homework.id}
             timeout={++timeout}
-            homework={homework.data() as HomeworkData}
+            homework={homework.data()}
             onDelete={() => homeworksRef.doc(homework.id).delete()}
           />
         ))
@@ -62,7 +65,7 @@ function HomeworksLister({ courseName, subCourseName }: Props) {
         <div style={{ margin: "0 35% 0 35%", textAlign: "center" }}>
           <Empty />
           <Typography variant="caption" color="textPrimary">
-            This is empty...
+            <Trans>There are no homeworks</Trans>
           </Typography>
         </div>
       ) : (

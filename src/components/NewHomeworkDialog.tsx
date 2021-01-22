@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-
+import { Trans, useTranslation } from "gatsby-plugin-react-i18next";
 import firebase from "gatsby-plugin-firebase";
-
 import usePermissions from "../utils/usePermissions";
 
 import Button from "@material-ui/core/Button";
@@ -24,6 +23,7 @@ type Props = {
 };
 
 const NewHomeworkDialog = ({ onClose, courseName, subCourseName }: Props) => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -61,21 +61,23 @@ const NewHomeworkDialog = ({ onClose, courseName, subCourseName }: Props) => {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Dialog open onClose={onClose}>
-        <DialogTitle>New Homework</DialogTitle>
+        <DialogTitle>
+          <Trans>New Homework</Trans>
+        </DialogTitle>
         <DialogContent>
           <Grid container direction="row" justify="space-between">
             <TextField
               // eslint-disable-next-line
               autoFocus
               margin="dense"
-              label="Title"
+              label={t("Title")}
               type="text"
               fullWidth
               onChange={(e) => setTitle(e.target.value)}
             />
             <TextField
               margin="dense"
-              label="Content"
+              label={t("Content")}
               type="textarea"
               fullWidth
               multiline
@@ -87,13 +89,15 @@ const NewHomeworkDialog = ({ onClose, courseName, subCourseName }: Props) => {
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
+          <Button onClick={onClose}>
+            <Trans>Cancel</Trans>
+          </Button>
           <Button
             onClick={submit}
             disabled={title.length === 0 || content.length === 0}
             color="primary"
           >
-            Add
+            <Trans>Add</Trans>
           </Button>
         </DialogActions>
       </Dialog>

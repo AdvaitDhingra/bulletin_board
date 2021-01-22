@@ -1,5 +1,5 @@
 import React from "react";
-import { navigate } from "gatsby";
+import { useI18next } from "gatsby-plugin-react-i18next";
 import firebase from "gatsby-plugin-firebase";
 
 import makeStyles from "@material-ui/styles/makeStyles";
@@ -27,12 +27,13 @@ type Props = {
 };
 
 const MenuFab = ({ onNewHomework }: Props) => {
+  const { navigate, t } = useI18next();
   const style = useStyles();
   const [open, setOpen] = React.useState(false);
 
   return (
     <SpeedDial
-      ariaLabel="Menu Icon"
+      ariaLabel={t("Menu Icon")}
       icon={
         <SpeedDialIcon icon={<ExpandLessIcon />} openIcon={<CloseIcon />} />
       }
@@ -45,7 +46,7 @@ const MenuFab = ({ onNewHomework }: Props) => {
       <SpeedDialAction
         key="new-note"
         icon={<AddIcon />}
-        tooltipTitle="Add a new homework"
+        tooltipTitle={t("Add a new homework")}
         onClick={() => {
           setOpen(false);
           onNewHomework();
@@ -54,13 +55,13 @@ const MenuFab = ({ onNewHomework }: Props) => {
       <SpeedDialAction
         key="open-settings"
         icon={<SettingsIcon />}
-        tooltipTitle="Open the settings"
+        tooltipTitle={t("Open the settings")}
         onClick={() => navigate("/settings")}
       />
       <SpeedDialAction
         key="logout"
         icon={<CloseIcon />}
-        tooltipTitle="Log out"
+        tooltipTitle={t("Log out")}
         onClick={() => {
           firebase.auth().signOut();
           navigate("/");
@@ -69,7 +70,7 @@ const MenuFab = ({ onNewHomework }: Props) => {
       <SpeedDialAction
         key="about"
         icon={<AboutIcon />}
-        tooltipTitle="About this website"
+        tooltipTitle={t("About this website")}
         onClick={() => navigate("/about", { state: { fromSelf: true } })}
       />
     </SpeedDial>

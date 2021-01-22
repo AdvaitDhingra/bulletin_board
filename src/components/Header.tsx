@@ -1,12 +1,16 @@
-import { Link, navigate } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
+import { Link, useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
+import type { Theme } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import makeStyles from "@material-ui/styles/makeStyles";
 import { darken } from "@material-ui/core/styles";
-import type { Theme } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import LanguageIcon from "@material-ui/icons/Language";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles((theme: Theme) => ({
   header: {
@@ -27,6 +31,7 @@ type Props = {
 
 const Header = ({ siteTitle, titleRedirect, setDark, dark }: Props) => {
   const style = useStyles();
+  const { t } = useTranslation();
 
   return (
     <header className={style.header}>
@@ -52,17 +57,34 @@ const Header = ({ siteTitle, titleRedirect, setDark, dark }: Props) => {
         </h1>
         <div />
         <div />
-        <FormControlLabel
-          control={
-            <Switch
-              checked={dark}
-              onChange={(e) => setDark(e.target.checked)}
-              name="Dark Mode"
-              color="primary"
-            />
-          }
-          label="Dark Mode"
-        />
+        <div>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={dark}
+                onChange={(e) => setDark(e.target.checked)}
+                name={t("Dark Mode")}
+                color="primary"
+              />
+            }
+            label={
+              <Typography color="textPrimary">
+                <Trans>Dark Mode</Trans>
+              </Typography>
+            }
+          />
+          <Link to="/language">
+            <Tooltip
+              title={t("Language selection")}
+              PopperProps={{ style: { marginTop: "-12px" } }}
+              arrow
+            >
+              <IconButton>
+                <LanguageIcon color="inherit" />
+              </IconButton>
+            </Tooltip>
+          </Link>
+        </div>
       </div>
     </header>
   );

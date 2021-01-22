@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation, Trans } from "gatsby-plugin-react-i18next";
 
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
 
@@ -60,6 +61,7 @@ const kurse = {
 };
 
 const HomePage = () => {
+  const { t } = useTranslation();
   const [user, loading] = useAuthState();
 
   const [fach, setFach] = React.useState(0);
@@ -72,8 +74,10 @@ const HomePage = () => {
   return (
     <Layout authRequired>
       <SEO
-        title="Homework"
-        description="You need to be logged in to see this. All your homework is listed here."
+        title={t(`Homework`)}
+        description={t(
+          `You need to be logged in to see this. All your homework is listed here.`
+        )}
       />
       {loading || user === null ? (
         <LinearProgress />
@@ -84,11 +88,15 @@ const HomePage = () => {
               button
               aria-haspopup="true"
               aria-controls="fach-menu"
-              aria-label="Fach"
+              aria-label={t("Course")}
               onClick={(e) => setAnchorElFach(e.currentTarget)}
             >
               <ListItemText
-                primary={<Typography color="primary">Fach:</Typography>}
+                primary={
+                  <Typography color="primary">
+                    <Trans>Course</Trans>
+                  </Typography>
+                }
                 secondary={facher[fach]}
               />
               <ExpandMoreIcon />
@@ -97,11 +105,15 @@ const HomePage = () => {
               button
               aria-haspopup="true"
               aria-controls="kurs-menu"
-              aria-label="Kurs"
+              aria-label={t("Subcourse")}
               onClick={(e) => setAnchorElKurs(e.currentTarget)}
             >
               <ListItemText
-                primary={<Typography color="primary">Kurs:</Typography>}
+                primary={
+                  <Typography color="primary">
+                    <Trans>Subcourse</Trans>
+                  </Typography>
+                }
                 secondary={kurse[facher[fach]][kurs]}
               />
               <ExpandMoreIcon />

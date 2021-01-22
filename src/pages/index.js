@@ -1,9 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-
 import firebase from "gatsby-plugin-firebase";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
-import { navigate, Link } from "gatsby";
+import { useI18next, Link, Trans } from "gatsby-plugin-react-i18next";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -36,6 +35,7 @@ const IndexPage = ({
     },
   },
 }) => {
+  const { navigate, t } = useI18next();
   const userField = React.useRef();
   const passwordField = React.useRef();
   const [error, setError] = React.useState(null);
@@ -43,7 +43,7 @@ const IndexPage = ({
   // If user already logged in redirect
   React.useEffect(() => {
     if (user !== null) navigate("/home");
-  }, [user]);
+  }, [user, navigate]);
 
   function submit(e) {
     e.preventDefault();
@@ -61,37 +61,45 @@ const IndexPage = ({
   return (
     <Layout>
       <SEO
-        title="Login"
-        description={`Welcome to ${siteName}, a place for students of the ${schoolShortName} to share their homework. Please log in or register before using the services!`}
+        title={t("Login")}
+        description={t(
+          `Welcome to {{siteName}}, a place for students of the {{schoolShortName}} to share their homework. ` +
+            `Please log in or register before using the services!`,
+          { siteName, schoolShortName }
+        )}
       />
       {loading ? (
         <LinearProgress />
       ) : (
         <>
           <Typography variant="h3" align="center" color="textPrimary">
-            Welcome to {siteName}! Please log in.
+            <Trans siteName={siteName}>
+              Welcome to {{ siteName }}! Please log in.
+            </Trans>
           </Typography>
           <form className="login" onSubmit={submit}>
             {error && (
               <Alert variant="outlined" severity="error">
-                Error loging in: {error}
+                <Trans>Error loging in: {{ error }}</Trans>
               </Alert>
             )}
             <input
               ref={userField}
               type="text"
-              placeholder="E-Mail adresse"
+              placeholder={t("Email adress")}
               className="login_text"
               id="user"
             />
             <input
               ref={passwordField}
               type="password"
-              placeholder="Kennwort"
+              placeholder={t("Password")}
               className="login_text"
               id="password"
             />
-            <button className="loginButton">Login</button>
+            <button className="loginButton" aria-label={t("Login")}>
+              <Trans>Login</Trans>
+            </button>
           </form>
           <div
             style={{

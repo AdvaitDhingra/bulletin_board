@@ -1,14 +1,8 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 import { useAuthState } from "../utils/firebase-hooks-gatsby";
+import { Trans, useTranslation } from "gatsby-plugin-react-i18next";
 
 import Header from "./Header";
 import Unauthorized from "./Unauthorized";
@@ -27,6 +21,7 @@ type Props = {
 };
 
 const Layout = ({ children, authRequired }: Props) => {
+  const { t } = useTranslation();
   const [user, loading] = useAuthState();
   const [dark, setDark] = React.useState(
     globalThis === globalThis.window
@@ -82,12 +77,14 @@ const Layout = ({ children, authRequired }: Props) => {
         <div style={{ marginTop: "33px" }} />
         <footer className="footer">
           <Typography variant="subtitle2" color="textPrimary" align="center">
-            © {new Date().getFullYear()}, made with{" "}
-            <span role="img" aria-label="love">
-              💖
-            </span>{" "}
-            by <Link href="mailto:dhingra.co.in">Advait Dhingra</Link> &{" "}
-            <Link href="https://github.com/arthuro555">Arthur Pacaud</Link>
+            <Trans>
+              Made with{" "}
+              <span role="img" aria-label={t("love")}>
+                💖
+              </span>{" "}
+              by <Link href="mailto:dhingra.co.in">Advait Dhingra</Link> &{" "}
+              <Link href="https://github.com/arthuro555">Arthur Pacaud</Link>
+            </Trans>
           </Typography>
         </footer>
       </div>

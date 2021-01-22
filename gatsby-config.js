@@ -1,10 +1,7 @@
-const { render } = require("mustache");
-
 module.exports = {
   siteMetadata: {
     siteName: `FEG Board`,
-    description: `This website has been created by {{author}} for the {{schoolName}}. Here, students and teachers can share homework, or use other scholar tools.`,
-    author: `Advait Dhingra and Arthur Pacaud`,
+    author: `Advait Dhingra & Arthur Pacaud`,
     schoolName: "Friedrich-Ebert-Gymnasium Bonn",
     schoolShortName: "FEG",
     siteUrl: `https://feg-boards.netlify.app/`,
@@ -13,7 +10,21 @@ module.exports = {
   },
   pathPrefix: "/",
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        path: `${__dirname}/locales`,
+        languages: [`us`, `de`, `fr`],
+        defaultLanguage: `us`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `locales`,
+        path: `${__dirname}/locales`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -60,7 +71,60 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        exclude: ["/**/404", "/**/404.html"],
+        query: `
+            {
+              site {
+                siteMetadata {
+                  siteUrl
+                }
+              }
+              allSitePage(filter: {context: {i18n: {routed: {eq: false}}}}) {
+                edges {
+                  node {
+                    context {
+                      i18n {
+                        defaultLanguage
+                        languages
+                        originalPath
+                      }
+                    }
+                    path
+                  }
+                }
+              }
+            }
+          `,
+        serialize: ({ site, allSitePage }) => {
+          return allSitePage.edges.map((edge) => {
+            const {
+              languages,
+              originalPath,
+              defaultLanguage,
+            } = edge.node.context.i18n;
+            const { siteUrl } = site.siteMetadata;
+            const url = siteUrl + originalPath;
+            const links = [
+              { lang: defaultLanguage, url },
+              { lang: "x-default", url },
+            ];
+            languages.forEach((lang) => {
+              if (lang === defaultLanguage) return;
+              links.push({ lang, url: `${siteUrl}/${lang}${originalPath}` });
+            });
+            return {
+              url,
+              changefreq: "daily",
+              priority: 1.0,
+              links,
+            };
+          });
+        },
+      },
+    },
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
@@ -69,8 +133,3 @@ module.exports = {
     },
   ],
 };
-
-module.exports.siteMetadata.description = render(
-  module.exports.siteMetadata.description,
-  module.exports.siteMetadata
-);

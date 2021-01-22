@@ -1,5 +1,7 @@
 import React from "react";
-import { navigate, graphql } from "gatsby";
+import { graphql } from "gatsby";
+import { Trans, useI18next } from "gatsby-plugin-react-i18next";
+import useTranslatedConfig from "../strings";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -26,29 +28,33 @@ const AboutPage = ({
   location: { state },
   data: {
     site: {
-      siteMetadata: { siteName, description, githubLink },
+      siteMetadata: { siteName, githubLink },
     },
   },
 }) => {
+  const { t, navigate } = useI18next();
+  const { description } = useTranslatedConfig();
   return (
     <Layout>
       <SEO
-        title="About this site"
-        description={`Learn more about ${siteName}.`}
+        title={t("About this website")}
+        description={t(`Learn more about {{siteName}}.`, { siteName })}
       />
       <Container maxWidth="sm">
         <Typography variant="h4" align="center" color="textPrimary">
-          <span role="img" aria-label="Waving hand emoji">
+          <span role="img" aria-label={t("(waving hand emoji)")}>
             👋
           </span>{" "}
-          Hello there!
+          <Trans>Hello there!</Trans>
         </Typography>
         <Typography align="center" color="textSecondary">
-          {description} This website is open source, check it out on{" "}
-          <Link href={githubLink} target="_blank" rel="noopener">
-            GitHub
-          </Link>
-          !
+          <Trans>
+            {{ description }} This website is open source, check it out on{" "}
+            <Link href={githubLink} target="_blank" rel="noopener">
+              GitHub
+            </Link>
+            !
+          </Trans>
         </Typography>
       </Container>
       <Fab

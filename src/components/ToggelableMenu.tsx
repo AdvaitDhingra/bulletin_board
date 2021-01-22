@@ -4,7 +4,12 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import List from "./List";
 
-const ToggelableMenu = ({ children, title }) => {
+type Props = {
+  children: JSX.Element;
+  title: JSX.Element;
+};
+
+const ToggelableMenu = ({ children, title }: Props) => {
   return (
     <Accordion>
       <AccordionSummary>{title}</AccordionSummary>
