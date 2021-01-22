@@ -18,6 +18,8 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Slide from "@material-ui/core/Slide";
 
+const maxSize = 250;
+
 type Props = {
   id: string;
   timeout: number;
@@ -27,7 +29,6 @@ type Props = {
 
 const Homework = ({ id, timeout, homework, onDelete }: Props) => {
   const { title, content, startDate, dueDate } = homework;
-  const maxSize = 250;
   const [open, setOpen] = useState(false);
 
   if (!isHomeworkData(homework))
@@ -55,6 +56,8 @@ const Homework = ({ id, timeout, homework, onDelete }: Props) => {
     </Typography>
   );
 
+  const renderDialog = content.length > maxSize;
+
   return (
     <>
       <Slide in direction="right" timeout={timeout * 200}>
@@ -65,9 +68,10 @@ const Homework = ({ id, timeout, homework, onDelete }: Props) => {
             </IconButton>
             <Typography variant="h6">{title}</Typography>
             <article>{content.substring(0, maxSize)}</article>
-            <footer>{dates}</footer>
+            <br />
+            <footer style={{ marginBottom: "-18px" }}>{dates}</footer>
           </CardContent>
-          {content.length > maxSize && (
+          {renderDialog && (
             <CardActions>
               <Button onClick={() => setOpen(true)}>
                 <Trans>Read more...</Trans>
@@ -77,18 +81,20 @@ const Homework = ({ id, timeout, homework, onDelete }: Props) => {
         </Card>
       </Slide>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>{title}</DialogTitle>
-        <DialogContent>
-          <article>{content}</article>
-          <footer>{dates}</footer>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpen(false)}>
-            <Trans>Close</Trans>
-          </Button>
-        </DialogActions>
-      </Dialog>
+      {renderDialog && (
+        <Dialog open={open} onClose={() => setOpen(false)}>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogContent>
+            <article>{content}</article>
+            <footer>{dates}</footer>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpen(false)}>
+              <Trans>Close</Trans>
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </>
   );
 };
