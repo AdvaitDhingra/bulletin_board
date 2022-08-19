@@ -73,7 +73,7 @@ const IndexPage = ({
       ) : (
         <>
           <Typography variant="h3" align="center" color="textPrimary">
-            <Trans siteName={siteName}>
+            <Trans>
               Welcome to {{ siteName }}! Please log in.
             </Trans>
           </Typography>
